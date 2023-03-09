@@ -1,6 +1,6 @@
-from . import views
+from .views.home_views import HommeView
 from django.urls import path
 
 urlpatterns = [
-   path('', views.HommeView.as_view())
+   path('', HommeView.as_view())
 ]

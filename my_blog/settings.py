@@ -35,8 +35,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'tailwind',
-    'theme',
+    'debug_toolbar',
+    'user_profile',
     'app'
 ]
 
@@ -48,6 +48,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = 'my_blog.urls'
@@ -55,7 +56,7 @@ ROOT_URLCONF = 'my_blog.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS':   [ BASE_DIR /'templates'],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -112,17 +113,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = 'static/'
+
+STATIC_ROOT = [BASE_DIR / 'static']
+STATIC_URL = '/static/'
+# STATICFILES = [BASE_DIR / 'staticfiles']
+MEDIA_URL = '/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-TAILWIND_APP_NAME = 'theme'
-
-INTERNAL_IPS = [
-    "127.0.0.1",
-]
+AUTH_USER_MODEL = 'user_profile.User'
 
 '''
 crée moi le schemas de base de donnée complexe pour la réalisation d'un blog moderne avec le plus de table possible 
@@ -188,3 +188,9 @@ TABLE Notifications
 - created_at (timestamp)
 - read_at (timestamp)
 '''
+
+INTERNAL_IPS = [
+    # ...
+    "127.0.0.1",
+    # ...
+]
