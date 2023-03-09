@@ -1,4 +1,4 @@
-{% extends 'base/base.html' %}
+{% extends 'base/base_auth.html' %}
 {% load static %}
 
 {% block content %}
@@ -82,7 +82,7 @@ Main hero START -->
 				<div class="row g-4">
 					<!-- Card item START -->
 					<div class="col-12">
-						<div class="card card-overlay-bottom card-grid-sm card-bg-scale" style="background-image:url(assets/images/blog/1by1/02.jpg); background-position: center left; background-size: cover;">
+						<div class="card card-overlay-bottom card-grid-sm card-bg-scale" style="background-image:url({% static 'assets/images/blog/1by1/02.jpg'%}); background-position: center left; background-size: cover;">
 							<!-- Card Image -->
 							<!-- Card Image overlay -->
 							<div class="card-img-overlay d-flex align-items-center p-3 p-sm-4">
