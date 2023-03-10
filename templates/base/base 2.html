@@ -1,3 +1,5 @@
+{%load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +13,7 @@
 	<!-- Dark mode -->
 	<script>
 		const storedTheme = localStorage.getItem('theme')
- 
+
 		const getPreferredTheme = () => {
 			if (storedTheme) {
 				return storedTheme
@@ -30,7 +32,7 @@
 		setTheme(getPreferredTheme())
 
 		window.addEventListener('DOMContentLoaded', () => {
-		    let el = document.querySelector('.theme-icon-active');
+		    var el = document.querySelector('.theme-icon-active');
 			if(el != 'undefined' && el != null) {
 				const showActiveTheme = theme => {
 				const activeThemeIcon = document.querySelector('.theme-icon-active use')
@@ -65,7 +67,7 @@
 
 			}
 		})
-		
+
 	</script>
 
 	<!-- Favicon -->
@@ -76,11 +78,11 @@
 	<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
 
 	<!-- Plugins CSS -->
-	<link rel="stylesheet" type="text/css" href="assets/vendor/font-awesome/css/all.min.css">
-	<link rel="stylesheet" type="text/css" href="assets/vendor/bootstrap-icons/bootstrap-icons.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'assets/vendor/font-awesome/css/all.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}">
 
 	<!-- Theme CSS -->
-	<link id="style-switch" rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<link id="style-switch" rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}">
 
 </head>
 
@@ -94,8 +96,8 @@ Header START -->
 		<div class="container">
 			<!-- Logo START -->
 			<a class="navbar-brand" href="index.html">
-				<img class="navbar-brand-item light-mode-item" src="assets/images/logo.svg" alt="logo">			
-				<img class="navbar-brand-item dark-mode-item" src="assets/images/logo-light.svg" alt="logo">			
+				<img class="navbar-brand-item light-mode-item" src="assets/images/logo.svg" alt="logo">
+				<img class="navbar-brand-item dark-mode-item" src="assets/images/logo-light.svg" alt="logo">
 			</a>
 			<!-- Logo END -->
 
@@ -108,7 +110,7 @@ Header START -->
 			<!-- Main navbar START -->
 			<div class="collapse navbar-collapse" id="navbarCollapse">
 				<ul class="navbar-nav navbar-nav-scroll ms-auto">
-					
+
 					<!-- Nav item 1 Demos -->
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" id="homeMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>
@@ -135,7 +137,7 @@ Header START -->
 							<li> <a class="dropdown-item" href="about-us.html">About</a></li>
 							<li> <a class="dropdown-item" href="contact-us.html">Contact</a></li>
 							<!-- Dropdown submenu -->
-							<li class="dropdown-submenu dropend"> 
+							<li class="dropdown-submenu dropend">
 								<a class="dropdown-item dropdown-toggle" href="#">Shop</a>
 								<ul class="dropdown-menu dropdown-menu-start" data-bs-popper="none">
 									<li> <a class="dropdown-item" href="shop-grid.html">Shop grid</a> </li>
@@ -146,7 +148,7 @@ Header START -->
 								</ul>
 							</li>
 							<!-- Dropdown submenu -->
-							<li class="dropdown-submenu dropend"> 
+							<li class="dropdown-submenu dropend">
 								<a class="dropdown-item dropdown-toggle" href="#">Other Archives</a>
 								<ul class="dropdown-menu dropdown-menu-start" data-bs-popper="none">
 									<li> <a class="dropdown-item" href="author.html">Author Page</a> </li>
@@ -186,26 +188,26 @@ Header START -->
 								</ul>
 							</li>
 							<li class="dropdown-divider"></li>
-							<li> 
+							<li>
 								<a class="dropdown-item" href="https://support.webestica.com/" target="_blank">
 									<i class="text-warning fa-fw bi bi-life-preserver me-2"></i>Support
-								</a> 
+								</a>
 							</li>
-							<li> 
+							<li>
 								<a class="dropdown-item" href="docs/index.html" target="_blank">
 									<i class="text-danger fa-fw bi bi-card-text me-2"></i>Documentation
-								</a> 
+								</a>
 							</li>
 							<li class="dropdown-divider"></li>
-							<li> 
+							<li>
 								<a class="dropdown-item" href="https://blogzine.webestica.com/rtl" target="_blank">
 									<i class="text-info fa-fw bi bi-toggle-off me-2"></i>RTL demo
-								</a> 
+								</a>
 							</li>
-							<li> 
+							<li>
 								<a class="dropdown-item" href="https://themes.getbootstrap.com/store/webestica/" target="_blank">
 									<i class="text-success fa-fw bi bi-cloud-download-fill me-2"></i>Buy blogzine!
-								</a> 
+								</a>
 							</li>
 						</ul>
 					</li>
@@ -215,7 +217,7 @@ Header START -->
 						<a class="nav-link dropdown-toggle" href="#" id="postMenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Post</a>
 						<ul class="dropdown-menu" aria-labelledby="postMenu">
 							<!-- dropdown submenu -->
-							<li class="dropdown-submenu dropend"> 
+							<li class="dropdown-submenu dropend">
 								<a class="dropdown-item dropdown-toggle" href="#">Post grid</a>
 								<ul class="dropdown-menu dropdown-menu-start" data-bs-popper="none">
 									<li> <a class="dropdown-item" href="post-grid.html">Post grid</a> </li>
@@ -255,7 +257,7 @@ Header START -->
 											<!-- Card img -->
 											<img class="card-img rounded" src="assets/images/blog/16by9/small/01.jpg" alt="Card image">
 											<div class="card-body px-0 pt-3">
-												<h6 class="card-title mb-0"><a href="post-single-2.html" class="btn-link text-reset fw-bold">7 common mistakes everyone makes while traveling</a></h6>
+												<h6 class="card-title mb-0"><a href="#" class="btn-link text-reset fw-bold">7 common mistakes everyone makes while traveling</a></h6>
 												<!-- Card info -->
 												<ul class="nav nav-divider align-items-center text-uppercase small mt-2">
 													<li class="nav-item">
@@ -273,7 +275,7 @@ Header START -->
 											<!-- Card img -->
 											<img class="card-img rounded" src="assets/images/blog/16by9/small/02.jpg" alt="Card image">
 											<div class="card-body px-0 pt-3">
-												<h6 class="card-title mb-0"><a href="post-single-2.html" class="btn-link text-reset fw-bold">12 worst types of business accounts you follow on Twitter</a></h6>
+												<h6 class="card-title mb-0"><a href="#" class="btn-link text-reset fw-bold">12 worst types of business accounts you follow on Twitter</a></h6>
 												<!-- Card info -->
 												<ul class="nav nav-divider align-items-center text-uppercase small mt-2">
 													<li class="nav-item">
@@ -291,7 +293,7 @@ Header START -->
 											<!-- Card img -->
 											<img class="card-img rounded" src="assets/images/blog/16by9/small/03.jpg" alt="Card image">
 											<div class="card-body px-0 pt-3">
-												<h6 class="card-title mb-0"><a href="post-single-2.html" class="btn-link text-reset fw-bold">Skills that you can learn from business</a></h6>
+												<h6 class="card-title mb-0"><a href="#" class="btn-link text-reset fw-bold">Skills that you can learn from business</a></h6>
 												<!-- Card info -->
 												<ul class="nav nav-divider align-items-center text-uppercase small mt-2">
 													<li class="nav-item">
@@ -417,70 +419,11 @@ Header START -->
 </header>
 <!-- =======================
 Header END -->
-
+{% block content %}
 <!-- **************** MAIN CONTENT START **************** -->
-<main>
 
-<!-- =======================
-Inner intro START -->
-<section>
-	<div class="container">
-		<div class="row">
-      <div class="col-md-10 col-lg-8 col-xl-6 mx-auto">
-        <div class="p-4 p-sm-5 bg-primary bg-opacity-10 rounded">
-					<h2>Log in to your account</h2>
-					<!-- Form START -->
-					<form class="mt-4">
-						<!-- Email -->
-						<div class="mb-3">
-							<label class="form-label" for="exampleInputEmail1">Email address</label>
-							<input type="email" class="form-control" id="exampleInputEmail1" placeholder="E-mail">
-						</div>
-						<!-- Password -->
-						<div class="mb-3">
-							<label class="form-label" for="exampleInputPassword1">Password</label>
-							<input type="password" class="form-control" id="exampleInputPassword1" placeholder="*********">
-						</div>
-						<!-- Checkbox -->
-						<div class="mb-3 form-check">
-							<input type="checkbox" class="form-check-input" id="exampleCheck1">
-							<label class="form-check-label" for="exampleCheck1">keep me signed in</label>
-						</div>
-						<!-- Button -->
-						<div class="row align-items-center">
-							<div class="col-sm-4">
-								<button type="submit" class="btn btn-success">Sign me in</button>
-							</div>
-							<div class="col-sm-8 text-sm-end">
-								<span>Don't have an account? <a href="signup.html"><u>Sign up</u></a></span>
-							</div>
-						</div>
-					</form>
-					<!-- Form END -->
-					<hr>
-					<!-- Social-media btn -->
-					<div class="text-center">
-						<p>Sign in with your social network for quick access</p>
-						<ul class="list-unstyled d-sm-flex mt-3 justify-content-center">
-							<li class="mx-2">
-								<a href="#" class="btn bg-facebook d-inline-block"><i class="fab fa-facebook-f me-2"></i> Sign in with Facebook</a>
-							</li>
-							<li class="mx-2">
-								<a href="#" class="btn bg-google d-inline-block"><i class="fab fa-google me-2"></i> Sign in with google</a>
-							</li>
-						</ul>
-					</div>
-        </div>
-      </div>
-    </div>
-	</div>
-</section>
-<!-- =======================
-Inner intro END -->
-
-</main>
 <!-- **************** MAIN CONTENT END **************** -->
-
+{% endblock %}
 <!-- =======================
 Footer START -->
 <footer class="pb-0">
@@ -490,7 +433,7 @@ Footer START -->
 		<div class="row pt-5">
 			<!-- Footer Widget -->
 			<div class="col-md-6 col-lg-4 mb-4">
-				<img class="light-mode-item" src="assets/images/logo.svg" alt="logo">			
+				<img class="light-mode-item" src="assets/images/logo.svg" alt="logo">
 				<img class="dark-mode-item" src="assets/images/logo-light.svg" alt="logo">
 				<p class="mt-3">The next-generation blog, news, and magazine theme for you to start sharing your stories today! This Bootstrap 5 based theme is ideal for all types of sites that deliver the news.</p>
 				<div class="mt-4">©2023 <a href="https://www.webestica.com/" class="text-reset btn-link" target="_blank">Webestica</a>. All rights reserved
@@ -563,10 +506,10 @@ Footer END -->
 JS libraries, plugins and custom scripts -->
 
 <!-- Bootstrap JS -->
-<script src="assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{% static 'assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
 
 <!-- Template Functions -->
-<script src="assets/js/functions.js"></script>
+<script src="{% static 'assets/js/functions.js' %}"></script>
 
 </body>
 </html>
