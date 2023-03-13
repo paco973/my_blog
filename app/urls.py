@@ -4,5 +4,6 @@ from django.urls import path
 
 urlpatterns = [
    path('', HommeView.as_view(), name='index'),
-   path('post/', PostView.as_view(), name='post')
+   path('post/', PostView.as_view(), name='post'),
+   path('post/<int:id>/', PostView.as_view(), name='post_detail')
 ]

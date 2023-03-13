@@ -10,7 +10,7 @@ class Post(models.Model):
     title = models.CharField(max_length=255)
     body = models.TextField()
     description = models.CharField(max_length=300)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=get_current_user())
     tag = models.ManyToManyField(Tag)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     image = models.ImageField(upload_to=get_current_user(), blank=True, null=True)

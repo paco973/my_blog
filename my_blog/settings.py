@@ -22,7 +22,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'debug_toolbar',
     'user_profile',
-    'app'
+    'app',
+    'dashboard'
 ]
 
 # Middleware definition
@@ -36,6 +37,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "debug_toolbar.middleware.DebugToolbarMiddleware",
+    'my_blog.middleware.CurrentUserMiddleware'
 ]
 
 ROOT_URLCONF = 'my_blog.urls'

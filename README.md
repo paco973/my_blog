@@ -90,3 +90,112 @@ For open source projects, say how it is licensed.
 
 ## Project status
 If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+
+
+Écrit moi ce formulaire en django modelform en gardant tous les attributs et les veules par défaut le champ elle-même :
+<div class="card border mb-4">
+          <div class="card-header border-bottom p-3">
+            <h5 class="card-header-title mb-0">Profile</h5>
+          </div>
+          <div class="card-body">
+            <!-- Full name -->
+            <div class="mb-3">
+              <label class="form-label">Full name</label>
+              <div class="input-group">
+                <input type="text" class="form-control" value="Louis" placeholder="First name">
+                <input type="text" class="form-control" value="Ferguson" placeholder="Last name">
+              </div>
+            </div>
+            <!-- Username -->
+            <div class="mb-3">
+              <label class="form-label">Username</label>
+              <div class="input-group">
+                <span class="input-group-text">webestica.com</span>
+                <input type="text" class="form-control" value="louisferguson">
+              </div>
+            </div>
+            <!-- Profile picture -->
+            <div class="mb-3">
+              <label class="form-label">Profile picture</label>
+              <!-- Avatar upload START -->
+              <div class="d-flex align-items-center">
+                <div class="position-relative me-3">
+                  <!-- Avatar edit -->
+                  <div class="position-absolute top-0 end-0  z-index-9">
+                    <a class="btn btn-sm btn-light btn-round mb-0 mt-n1 me-n1" href="#"> <i class="bi bi-pencil"></i> </a>
+                  </div>
+                  <!-- Avatar preview -->
+                  <div class="avatar avatar-xl">
+                    <img class="avatar-img rounded-circle border border-white border-3 shadow" src="{{request.user.photo.url}}" alt="">
+                  </div>
+                </div>
+                <!-- Avatar remove button -->
+                <div class="avatar-remove">
+                  <button type="button" class="btn btn-light">Delete</button>
+                </div>
+              </div>
+              <!-- Avatar upload END -->
+            </div>
+            <!-- Job title -->
+            <div class="mb-3">
+              <label class="form-label">Job title</label>
+              <input class="form-control" type="text" value="An editor at Blogzine">
+            </div>
+            <!-- Location -->
+            <div class="mb-3">
+              <label class="form-label">Location</label>
+              <input class="form-control" type="text" value="New Hampshire">
+            </div>
+            <!-- Bio -->
+            <div class="mb-3">
+              <label class="form-label">Bio</label>
+              <textarea class="form-control" rows="3">I’ve found a way to get paid for my favorite hobby, and do so while following my dream of traveling the world.</textarea>
+              <div class="form-text">Brief description for your profile.</div>
+            </div>
+            <!-- Birthday -->
+            <div>
+              <label class="form-label">Birthday</label>
+              <input type="text" class="form-control flatpickr-input" placeholder="DD/MM/YYYY" value="12/10/1990">
+            </div>
+            <!-- Save button -->
+            <div class="d-flex justify-content-end mt-4">
+              <a href="#" class="btn text-secondary border-0 me-2">Discard</a>
+              <a href="#" class="btn btn-primary">Save changes</a>
+            </div>
+          </div>
+        </div>
+
+avec pour modele :
+
+class User(AbstractBaseUser):
+    email = models.EmailField(unique=True)
+    username = models.CharField(max_length=30, unique=True)
+    first_name = models.CharField(max_length=30, blank=True)
+    last_name = models.CharField(max_length=30, blank=True)
+    location = models.CharField(max_length=100, blank=True)
+    birthday = models.DateField(blank=True, null=True)
+    bio = models.TextField(max_length=500, blank=True)
+    photo = models.ImageField(upload_to='profile_pics/', blank=True, null=True)
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
+    subscribe = models.BooleanField(default=False)
+    is_superuser = models.BooleanField(default=False)
+    date_joined = models.DateTimeField(default=timezone.now)
+
+    USERNAME_FIELD = 'email'
+    # REQUIRED_FIELDS = ['username']
+
+    objects = UserManager()
+
+    def __str__(self):
+        return self.username
+
+    def has_perm(self, perm, obj=None):
+        return True
+
+    def has_module_perms(self, app_label):
+        return True
+
+
+    def fullname(self):
+        return f'{self.fullname} {self.last_name}'.title()

@@ -21,7 +21,7 @@ class User(AbstractBaseUser):
     date_joined = models.DateTimeField(default=timezone.now)
 
     USERNAME_FIELD = 'email'
-    #REQUIRED_FIELDS = ['username']
+    # REQUIRED_FIELDS = ['username']
 
     objects = UserManager()
 
@@ -33,3 +33,7 @@ class User(AbstractBaseUser):
 
     def has_module_perms(self, app_label):
         return True
+
+
+    def fullname(self):
+        return ' '.join([self.first_name, self.last_name]).title()
