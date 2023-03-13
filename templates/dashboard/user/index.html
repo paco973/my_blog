@@ -76,6 +76,13 @@ Main contain START -->
             <h5 class="card-header-title mb-0">Profile</h5>
           </div>
           <div class="card-body">
+          {% if form.errors %}
+            <div class="alert alert-danger">
+                {{ form.errors }}
+            </div>
+        {% endif %}
+          <form method="POST" action="{% url 'user' %}" enctype="multipart/form-data">
+          	 {% csrf_token %}
             <!-- Full name -->
             <div class="mb-3">
               <label class="form-label">Full name</label>
@@ -97,16 +104,8 @@ Main contain START -->
               <label class="form-label">Profile picture</label>
               <!-- Avatar upload START -->
               <div class="d-flex align-items-center">
-                <div class="position-relative me-3">
-                  <!-- Avatar edit -->
-                  <div class="position-absolute top-0 end-0  z-index-9">
-                    <a class="btn btn-sm btn-light btn-round mb-0 mt-n1 me-n1" href="#"> <i class="bi bi-pencil"></i> </a>
-                  </div>
-                  <!-- Avatar preview -->
-                  <div class="avatar avatar-xl">
-                    <img class="avatar-img rounded-circle border border-white border-3 shadow" src="{{request.user.photo.url}}" alt="">
-                  </div>
-                </div>
+
+                {{ form.photo}}
                 <!-- Avatar remove button -->
                 <div class="avatar-remove">
                   <button type="button" class="btn btn-light">Delete</button>
@@ -123,7 +122,7 @@ Main contain START -->
             <!-- Location -->
             <div class="mb-3">
               <label class="form-label">Location</label>
-              <input class="form-control" type="text" value="New Hampshire">
+              {{form.location}}
             </div>
             <!-- Bio -->
             <div class="mb-3">
@@ -139,8 +138,9 @@ Main contain START -->
             <!-- Save button -->
             <div class="d-flex justify-content-end mt-4">
               <a href="#" class="btn text-secondary border-0 me-2">Discard</a>
-              <a href="#" class="btn btn-primary">Save changes</a>
+              <input class="btn btn-primary" type="submit" value="Save changes">
             </div>
+            </form>
           </div>
         </div>
         <!-- Profile END -->

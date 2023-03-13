@@ -14,7 +14,7 @@ Inner intro START -->
 					<h1>Post list style</h1>
 					<nav class="d-flex justify-content-center" aria-label="breadcrumb">
 						<ol class="breadcrumb breadcrumb-dots m-0">
-							<li class="breadcrumb-item"><a href="index.html"><i class="bi bi-house me-1"></i> Home</a></li>
+							<li class="breadcrumb-item"><a href="{% url 'index' %}"><i class="bi bi-house me-1"></i> Home</a></li>
 							<li class="breadcrumb-item active">All post</li>
 						</ol>
 					</nav>
@@ -128,14 +128,7 @@ Main content START -->
 						</div>
 						<!-- Recent post widget END -->
 
-						<!-- ADV widget START -->
-						<div class="col-12 col-sm-6 col-lg-12 my-4">
-							<a href="#" class="d-block card-img-flash">
-								<img src="assets/images/adv.png" alt="">
-							</a>
-							<div class="smaller text-end mt-2">ads via <a href="#" class="text-muted"><u>Bootstrap</u></a></div>
-						</div>
-						<!-- ADV widget END -->
+					
 					</div>
 				</div>
 			</div>

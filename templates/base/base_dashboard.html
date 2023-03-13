@@ -85,6 +85,11 @@
 
 	<!-- Theme CSS -->
 	<link id="style-switch" rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}">
+    ^
+
+    {% block css %}
+
+	{% endblock %}
 
 </head>
 
@@ -185,7 +190,7 @@ Header START -->
 										<a href="#" class="list-group-item-action border-0 border-bottom d-flex p-3">
 											<div class="me-3">
 												<div class="avatar avatar-sm">
-													<img class="avatar-img rounded-circle" src="assets/images/avatar/08.jpg" alt="avatar">
+													<img class="avatar-img rounded-circle" src="{{request.user.photo.url}} " alt="{{request.user.username}}">
 												</div>
 											</div>
 											<div>
@@ -200,7 +205,7 @@ Header START -->
 										<a href="#" class="list-group-item-action border-0 border-bottom d-flex p-3">
 											<div class="me-3">
 												<div class="avatar avatar-sm">
-													<img class="avatar-img rounded-circle" src="assets/images/avatar/02.jpg" alt="avatar">
+													<img class="avatar-img rounded-circle" src="{{request.user.photo.url}}" alt="{{request.user.username}}">
 												</div>
 											</div>
 											<div>
@@ -230,7 +235,7 @@ Header START -->
 										<a href="#" class="list-group-item-action border-0 border-bottom d-flex p-3">
 											<div class="me-3">
 												<div class="avatar avatar-sm">
-													<img class="avatar-img rounded-circle" src="assets/images/avatar/03.jpg" alt="avatar">
+													<img class="avatar-img rounded-circle" src="{{request.user.photo.url}}" alt="avatar">
 												</div>
 											</div>
 											<div>
@@ -255,7 +260,7 @@ Header START -->
 				<div class="nav-item ms-2 ms-md-3 dropdown">
 					<!-- Avatar -->
 					<a class="avatar avatar-sm p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
-						<img class="avatar-img rounded-circle" src="assets/images/avatar/03.jpg" alt="avatar">
+						<img class="avatar-img rounded-circle" src="{{request.user.photo.url}}" alt="avatar">
 					</a>
 
 					<!-- Profile dropdown START -->
@@ -265,7 +270,7 @@ Header START -->
 							<div class="d-flex align-items-center">
 								<!-- Avatar -->
 								<div class="avatar me-3">
-									<img class="avatar-img rounded-circle shadow" src="assets/images/avatar/03.jpg" alt="avatar">
+									<img class="avatar-img rounded-circle shadow" src="{{request.user.photo.url}}" alt="avatar">
 								</div>
 								<div>
 									<a class="h6 mt-2 mt-sm-0" href="#"> Louis Ferguson</a>
@@ -377,6 +382,13 @@ JS libraries, plugins and custom scripts -->
 
 <!-- Template Functions -->
 <script src="{% static 'assets/js/functions.js' %}"></script>
+
+
+{% block js %}
+<!-- **************** MAIN CONTENT START **************** -->
+
+<!-- **************** MAIN CONTENT END **************** -->
+{% endblock %}
 
 </body>
 </html>

@@ -1,12 +1,10 @@
 from django.shortcuts import render, redirect, reverse
 from django.views import View
-from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
 from django.conf import settings
 from user_profile.forms.sign_in_form import SignInForm
 
 
-# Create your views here.
 class SigninView(View):
     template_name = 'auth/signin.html'
 
@@ -31,7 +29,7 @@ class SigninView(View):
                 else:
                     settings.SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
-                return HttpResponse('ok')
+                return redirect('post')
 
         form = SignInForm()
         return render(request, self.template_name, {'form': form})

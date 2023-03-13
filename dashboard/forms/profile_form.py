@@ -17,7 +17,7 @@ class ProfileForm(forms.ModelForm):
         widget=forms.TextInput(attrs={'class': 'form-control flatpickr-input', 'placeholder': 'DD/MM/YYYY'}))
     photo = forms.ImageField(label='Profile picture', widget=forms.FileInput(attrs={'class': 'form-control'}))
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self,  *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['first_name'].widget.attrs.update({'class': 'form-control', 'placeholder': 'First name'})
-        self.fields['last_name'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Last name'})
+
+

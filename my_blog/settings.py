@@ -20,7 +20,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'debug_toolbar',
+    'django_quill',
+
     'user_profile',
     'app',
     'dashboard'
@@ -107,10 +110,10 @@ USE_L10N = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_ROOT = [BASE_DIR / 'static']
+STATIC_ROOT = [BASE_DIR / 'static/']
 STATIC_URL = '/static/'
 STATICFILES = [BASE_DIR / 'staticfiles']
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = BASE_DIR / 'media/'
 MEDIA_URL = '/media/'
 
 # Default primary key field type
@@ -120,3 +123,24 @@ AUTH_USER_MODEL = 'user_profile.User'
 
 
 INTERNAL_IPS = ["127.0.0.1"]
+
+QUILL_CONFIGS = {
+    'default':{
+        'theme': 'snow',
+        'modules': {
+            'syntax': True,
+            'toolbar': [
+                [
+                    {'font': []},
+                    {'header': []},
+                    {'align': []},
+                    'bold', 'italic', 'underline', 'strike', 'blockquote',
+                    {'color': []},
+                    {'background': []},
+                ],
+                ['code-block', 'link'],
+                ['clean'],
+            ]
+        }
+    }
+}
