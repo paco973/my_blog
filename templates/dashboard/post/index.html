@@ -41,74 +41,17 @@ Main contain START -->
                   <!-- Post name -->
                   <div class="mb-3">
                     <label class="form-label">Post name</label>
-                    <input required id="con-name" name="name" type="text" class="form-control" placeholder="Post name">
+                    {{form.title}}
                     <small>Moving heaven divide two sea female great midst spirit</small>
                   </div>
                 </div>
-                <!-- Post type START -->
-                <div class="col-12">
-                  <div class="mb-3">
-                    <label class="form-label">Post type</label>
-                    <div class="d-flex flex-wrap gap-3">
-                      <!-- Post type item -->
-                      <div class="flex-fill">
-                        <input type="radio" class="btn-check" name="poll" id="option">
-                        <label class="btn btn-outline-light w-100" for="option">
-                          <i class="bi bi-chat-left-text fs-1"></i>
-                          <span class="d-block"> Post </span>
-                        </label>
-                      </div>
-                      <!-- Post type item -->
-                      <div class="flex-fill">
-                        <input type="radio" class="btn-check" name="poll" id="option2">
-                        <label class="btn btn-outline-light w-100" for="option2">
-                            <i class="bi bi-patch-question fs-1"></i>
-                          <span class="d-block"> Question </span>
-                        </label>
-                      </div>
-                      <!-- Post type item -->
-                      <div class="flex-fill">
-                        <input type="radio" class="btn-check" name="poll" id="option3" checked>
-                        <label class="btn btn-outline-light w-100" for="option3">
-                          <i class="bi bi-chat-right-dots fs-1"></i>
-                          <span class="d-block"> Poll </span>
-                        </label>
-                      </div>
-                      <!-- Post type item -->
-                      <div class="flex-fill">
-                        <input type="radio" class="btn-check" name="poll" id="option4">
-                        <label class="btn btn-outline-light w-100" for="option4">
-                          <i class="bi bi-ui-checks-grid fs-1"></i>
-                          <span class="d-block"> Images </span>
-                        </label>
-                      </div>
-                      <!-- Post type item -->
-                      <div class="flex-fill">
-                        <input type="radio" class="btn-check" name="poll" id="option5">
-                        <label class="btn btn-outline-light w-100" for="option5">
-                          <i class="bi bi-camera-reels fs-1"></i>
-                          <span class="d-block"> Video </span>
-                        </label>
-                      </div>
-                      <!-- Post type item -->
-                      <div class="flex-fill">
-                        <input type="radio" class="btn-check" name="poll" id="option6">
-                        <label class="btn btn-outline-light w-100" for="option6">
-                          <i class="bi bi-chat-square fs-1"></i>
-                          <span class="d-block"> Other </span>
-                        </label>
-                      </div>
-                    <!-- Post type item -->
-                  </div>
-                </div>
-              </div>
-              <!-- Post type END -->
+
 
               <!-- Short description -->
               <div class="col-12">
                 <div class="mb-3">
                     <label class="form-label">Short description </label>
-                    <textarea class="form-control" rows="3" placeholder="Add description"></textarea>
+                    {{form.description}}
                 </div>
               </div>
 
@@ -118,7 +61,7 @@ Main contain START -->
                   <div class="mb-3">
                     <label class="form-label">Post body</label>
                     <!-- Editor toolbar -->
-                     {{form.content}}
+                     {{form.body}}
                       <!-- Main toolbar -->
                       <div class="bg-body border rounded-bottom h-300 overflow-hidden" id="quilleditor">
                       </div>
@@ -131,7 +74,7 @@ Main contain START -->
                     <h6 class="my-2">Upload post image here, or<a href="#!" class="text-primary"> Browse</a></h6>
                     <label class="w-100" style="cursor:pointer;">
                       <span>
-                        <input class="form-control stretched-link" type="file" name="my-image" id="image" accept="image/gif, image/jpeg, image/png">
+                          {{form.image}}
                       </span>
                     </label>
                   </div>
@@ -142,7 +85,7 @@ Main contain START -->
                   <!-- Tags -->
                   <div class="mb-3">
                     <label class="form-label">Tags</label>
-                    <textarea class="form-control" rows="1" placeholder="business, sports ..."></textarea>
+                      {{form.tag}}
                     <small>Maximum of 14 keywords. Keywords should all be in lowercase and separated by commas. e.g. javascript, react, marketing.</small>
                   </div>
                 </div>
@@ -150,14 +93,7 @@ Main contain START -->
                   <!-- Message -->
                   <div class="mb-3">
                     <label class="form-label">Category</label>
-                    <select class="form-select" aria-label="Default select example">
-                      <option selected>Lifestyle</option>
-                      <option value="1">Technology</option>
-                      <option value="2">Travel</option>
-                      <option value="3">Business</option>
-                      <option value="4">Sports</option>
-                      <option value="5">Marketing</option>
-                    </select>
+                      {{form.category}}
                   </div>
                 </div>
                 <div class="col-12">

@@ -42,7 +42,7 @@ Main content START -->
 						</div>
 						<div class="col-md-7 mt-3 mt-md-0">
 							<a href="#" class="badge text-bg-success mb-2"><i class="fas fa-circle me-2 small fw-bold"></i>{{post.category}}</a>
-							<h3><a href="post-single-2.html" class="btn-link stretched-link text-reset">{{post.title}}</a></h3>
+							<h3><a href="{% url 'post_detail' post.id %}" class="btn-link stretched-link text-reset">{{post.title}}</a></h3>
 							<p>
 								{{post.description}}
 							</p>
@@ -54,7 +54,7 @@ Main content START -->
 											<div class="avatar avatar-xs">
 												<img class="avatar-img rounded-circle" src="{{post.user.photo.url}}" alt="avatar">
 											</div>
-											<span class="ms-3">by <a href="#" class="stretched-link text-reset btn-link">{{post.user.username}}</a></span>
+											<span class="ms-3">by <a href="#" class="stretched-link text-reset btn-link">{{post.user.fullname}}</a></span>
 										</div>
 									</div>
 								</li>

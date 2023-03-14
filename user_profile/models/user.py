@@ -7,13 +7,13 @@ from user_profile.models.user_manager import UserManager
 
 class User(AbstractBaseUser):
     email = models.EmailField(unique=True)
-    username = models.CharField(max_length=30, unique=True)
+    username = models.CharField(max_length=30, unique=True, blank=True)
     first_name = models.CharField(max_length=30, blank=True)
     last_name = models.CharField(max_length=30, blank=True)
     location = models.CharField(max_length=100, blank=True)
     birthday = models.DateField(blank=True, null=True)
     bio = models.TextField(max_length=500, blank=True)
-    photo = models.ImageField(upload_to='profile_pics/', blank=True, null=True)
+    photo = models.ImageField(upload_to='profile_pics/', blank=True, null=True, default='paco.png')
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     subscribe = models.BooleanField(default=False)
@@ -21,7 +21,7 @@ class User(AbstractBaseUser):
     date_joined = models.DateTimeField(default=timezone.now)
 
     USERNAME_FIELD = 'email'
-    # REQUIRED_FIELDS = ['username']
+    #REQUIRED_FIELDS = ['email']
 
     objects = UserManager()
 
