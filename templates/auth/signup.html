@@ -1,6 +1,6 @@
 {% extends 'base/base.html'%}
-{% load i18n %}
 
+{% load i18n %}
 
 {% block content%}
 <main>
@@ -12,10 +12,16 @@ Inner intro START -->
 		<div class="row">
       <div class="col-md-10 col-lg-8 col-xl-6 mx-auto">
         <div class="bg-primary bg-opacity-10 rounded p-4 p-sm-5">
-					<h2>{% translate "Create your free account" %} </h2>
+					<h2>{% trans 'Create your free account' %} </h2>
 					<!-- Form START -->
 					<form class="mt-4" method="post" action="{% url 'signup' %}">
-                    {{ form.errors }}
+
+                     {% if form.errors %}
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+	                       {{ form.errors }}
+	                       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endif %}
                     	 {% csrf_token %}
 						<!-- Email -->
 						<div class="mb-3">

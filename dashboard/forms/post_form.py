@@ -4,6 +4,7 @@ from app.models.category import Category
 from app.models.tag import Tag
 from django_quill.fields import QuillFormField
 
+
 class PostForm(forms.ModelForm):
     category = forms.ModelChoiceField(queryset=Category.objects.all(), widget=forms.Select(attrs={'class': 'form-select'}))
     tag = forms.ModelMultipleChoiceField(queryset=Tag.objects.all(), widget=forms.SelectMultiple(attrs={'class': 'form-select'}))

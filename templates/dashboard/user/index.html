@@ -77,10 +77,11 @@ Main contain START -->
           </div>
           <div class="card-body">
           {% if form.errors %}
-            <div class="alert alert-danger">
-                {{ form.errors }}
-            </div>
-        {% endif %}
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+	                       {{ form.errors }}
+	                       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endif %}
           <form method="POST" action="{% url 'user' %}" enctype="multipart/form-data">
           	 {% csrf_token %}
             <!-- Full name -->

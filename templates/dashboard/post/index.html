@@ -29,10 +29,11 @@ Main contain START -->
 					<div class="card-body">
             <!-- Form START -->
              {% if form.errors %}
-                <div class="alert alert-danger">
-                    {{ form.errors }}
-                </div>
-            {% endif %}
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+	                       {{ form.errors }}
+	                       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endif %}
             <form method="POST" action="{% url 'dashboard_geston_post' %}" enctype="multipart/form-data">
  {% csrf_token %}
               <!-- Main form -->

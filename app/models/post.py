@@ -10,13 +10,13 @@ from user_profile.models import User
 from django_quill.fields import QuillField
 
 
-
 class Post(models.Model):
     title = models.CharField(max_length=255)
     body = QuillField()
     description = models.CharField(max_length=300)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, default=None)
     tag = models.ManyToManyField(Tag)
+    is_published = models.BooleanField(default=False)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     image = models.ImageField(upload_to=f'post/', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)

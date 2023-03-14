@@ -13,6 +13,12 @@ Inner intro START -->
         <div class="p-4 p-sm-5 bg-primary bg-opacity-10 rounded">
 					<h2>Log in to your account</h2>
 					<!-- Form START -->
+                     {% if form.errors %}
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+	                       {{ form.errors }}
+	                       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endif %}
 					<form class="mt-4" method="post" action="{%  url 'signin' %}">
 						 {% csrf_token %}
 						<!-- Email -->
