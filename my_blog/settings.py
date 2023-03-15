@@ -63,7 +63,6 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.template.context_processors.static',
                 'django.template.context_processors.tz',
-                'cookielaw.context_processors.cookielaw',
                 'django.contrib.messages.context_processors.messages',
             ],
         },
