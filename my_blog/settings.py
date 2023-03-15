@@ -1,14 +1,16 @@
 from pathlib import Path
-import json
+import os
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-with open('/etc/config.json') as config_file:
-    config = json.load(config_file)
+#with open('/etc/config.json') as config_file:
+#    config = json.load(config_file)
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config.get('SECRET_KEY')
+#
+SECRET_KEY = "config.get('SECRET_KEY')"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = os.environ.get('DEBUG')
 
 ALLOWED_HOSTS = ['127.0.0.1', '165.232.40.239']
 
@@ -24,6 +26,7 @@ INSTALLED_APPS = [
 
     'debug_toolbar',
     'django_quill',
+    'storages',
 
     'user_profile',
     'app',
@@ -124,7 +127,6 @@ USE_TZ = True
 
 USE_L10N = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
@@ -134,11 +136,14 @@ STATICFILES = BASE_DIR / 'staticfiles'
 MEDIA_ROOT = BASE_DIR / 'media/'
 MEDIA_URL = '/media/'
 
+from .cdn.conf import (AWS_S3_ENDPOINT_URL, AWS_LOCATION, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY,
+                       AWS_S3_OBJECT_PARAMETERS, AWS_STORAGE_BUCKET_NAME, STATICFILES_STORAGE,
+                       DEFAULT_FILE_STORAGE)
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 AUTH_USER_MODEL = 'user_profile.User'
-
 
 INTERNAL_IPS = ["127.0.0.1"]
 
@@ -170,9 +175,10 @@ QUILL_CONFIG = {
         },
 
     },
-    'formats': ['header', 'font', 'size', 'bold', 'italic', 'underline', 'strike', 'script', 'list', 'blockquote', 'code-block', 'link', 'image', 'video', 'formula', 'align', 'direction', 'color', 'background'],
+    'formats': ['header', 'font', 'size', 'bold', 'italic', 'underline', 'strike', 'script', 'list', 'blockquote',
+                'code-block', 'link', 'image', 'video', 'formula', 'align', 'direction', 'color', 'background'],
     'theme': 'snow',
-'default': {
+    'default': {
         'theme': 'snow',
         'toolbar': [
             [{'font': []}],
@@ -214,3 +220,8 @@ STORAGES = {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
+
+# https://akamiblog.ams3.digitaloceanspaces.com
+
+# DO00Y83D3J9LXXHBR6RD
+# +cLYHGQGx4n2ylbBxUYQKUwR54UztyRe9HMXJTUIHh0
