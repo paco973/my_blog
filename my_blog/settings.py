@@ -1,15 +1,16 @@
 from pathlib import Path
-
+import json
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+with open('/etc/config.json') as config_file:
+    config = json.load(config_file)
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-js&j_&(3ov=960bsao0oi28bqka4v6*+jq15d-qvwe7y__p!&n'
+SECRET_KEY = config.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['127.0.0.1']
 
 # Application definition
 
