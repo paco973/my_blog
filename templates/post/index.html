@@ -1,6 +1,8 @@
 {% extends 'base/base.html' %}
 
-
+{% block tite %}
+ Postes
+	{% endblock %}
 {% block content%}
 <main>
 
@@ -11,11 +13,11 @@ Inner intro START -->
 		<div class="row">
       <div class="col-12">
 				<div class="border p-4 text-center rounded-3">
-					<h1>Post list style</h1>
+					<h1>Posts</h1>
 					<nav class="d-flex justify-content-center" aria-label="breadcrumb">
 						<ol class="breadcrumb breadcrumb-dots m-0">
-							<li class="breadcrumb-item"><a href="{% url 'index' %}"><i class="bi bi-house me-1"></i> Home</a></li>
-							<li class="breadcrumb-item active">All post</li>
+							<!--<li class="breadcrumb-item"><a href="{% url 'index' %}"><i class="bi bi-house me-1"></i> Home</a></li>-->
+							<li class="breadcrumb-item active">Tous Les Posts</li>
 						</ol>
 					</nav>
 				</div>
@@ -89,7 +91,7 @@ Main content START -->
 				<div data-sticky data-margin-top="80" data-sticky-for="767">
 					<!-- Trending topics widget START -->
 					<div>
-						<h4 class="mb-3">Trending topics</h4>
+						<h4 class="mb-3">Topics tendances</h4>
 						<!-- Category item -->
 						{% for category in categories %}
 						<div class="text-center mb-3 card-bg-scale position-relative overflow-hidden rounded" style="background-image:url({{category.image.url}}); background-position: center left; background-size: cover;">
@@ -100,9 +102,9 @@ Main content START -->
 						{% endfor %}
 
 						<!-- View All Category button -->
-						<div class="text-center mt-3">
+						<!--<div class="text-center mt-3">
 							<a href="#" class="fw-bold text-muted text-primary-hover"><u>View all categories</u></a>
-						</div>
+						</div>-->
 					</div>
 					<!-- Trending topics widget END -->
 
