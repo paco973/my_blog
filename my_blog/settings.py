@@ -3,14 +3,14 @@ import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-#with open('/etc/config.json') as config_file:
+# with open('/etc/config.json') as config_file:
 #    config = json.load(config_file)
 # SECURITY WARNING: keep the secret key used in production secret!
 #
 SECRET_KEY = "config.get('SECRET_KEY')"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG')
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', '165.232.40.239']
 
@@ -45,8 +45,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "debug_toolbar.middleware.DebugToolbarMiddleware",
     'my_blog.middleware.CurrentUserMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'django.middleware.locale.LocaleMiddleware'
 ]
 
 ROOT_URLCONF = 'my_blog.urls'
@@ -130,15 +129,22 @@ USE_L10N = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_ROOT = BASE_DIR / 'static/'
-STATIC_URL = '/static/'
-STATICFILES = BASE_DIR / 'staticfiles'
-MEDIA_ROOT = BASE_DIR / 'media/'
-MEDIA_URL = '/media/'
 
-from .cdn.conf import (AWS_S3_ENDPOINT_URL, AWS_LOCATION, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY,
-                       AWS_S3_OBJECT_PARAMETERS, AWS_STORAGE_BUCKET_NAME, STATICFILES_STORAGE,
-                       DEFAULT_FILE_STORAGE)
+if not DEBUG:
+    from .cdn.conf import *
+
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, 'static/'),
+    ]
+    STATIC_URL = 'https://%s/%s/' % (AWS_S3_ENDPOINT_URL, AWS_LOCATION)
+
+    # DEFAULT_FILE_STORAGE = 'mdjguyane.storage_backends.PublicMediaStorage'
+else:
+    STATIC_ROOT = BASE_DIR / 'static/'
+    STATIC_URL = '/static/'
+    STATICFILES = BASE_DIR / 'staticfiles'
+    MEDIA_ROOT = BASE_DIR / 'media/'
+    MEDIA_URL = '/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
@@ -212,13 +218,6 @@ QUILL_CONFIG = {
         }
     }
 
-}
-
-STORAGES = {
-    # ...
-    "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-    },
 }
 
 # https://akamiblog.ams3.digitaloceanspaces.com
