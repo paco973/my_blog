@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 
 from app.models import Post
@@ -10,6 +10,8 @@ class HommeView(View):
     template_name = 'home/index.html'
 
     def get(self, request):
+
+        return redirect('post')
         posts = Post.objects.all()
         categories = Category.objects.all()
 
