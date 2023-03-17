@@ -9,7 +9,7 @@ class PostForm(forms.ModelForm):
     category = forms.ModelChoiceField(queryset=Category.objects.all(), widget=forms.Select(attrs={'class': 'form-select'}))
     tag = forms.ModelMultipleChoiceField(queryset=Tag.objects.all(), widget=forms.SelectMultiple(attrs={'class': 'form-select'}))
     title = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Post name'}))
-    body = QuillFormField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 3}))
+    body = QuillFormField()
     description = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Add description'}))
     image = forms.ImageField(label='Profile picture', widget=forms.FileInput(attrs={'class': 'form-control'}),required=False)
 
