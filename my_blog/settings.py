@@ -10,7 +10,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "config.get('SECRET_KEY')"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', '165.232.40.239', 'www.whisky-tech.online', 'whisky-tech.online']
 
@@ -220,7 +220,4 @@ QUILL_CONFIG = {
 
 }
 
-# https://akamiblog.ams3.digitaloceanspaces.com
 
-# DO00Y83D3J9LXXHBR6RD
-# +cLYHGQGx4n2ylbBxUYQKUwR54UztyRe9HMXJTUIHh0

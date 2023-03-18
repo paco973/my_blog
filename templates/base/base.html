@@ -74,7 +74,7 @@
 	</script>
 
 	<!-- Favicon -->
-	<link rel="shortcut icon" href="'assets/images/favicon.ico">
+	<link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}'">
 
 	<!-- Google Font -->
 	<link rel="preconnect" href="https://fonts.gstatic.com">
@@ -103,8 +103,8 @@ Header START -->
 		<div class="container">
 			<!-- Logo START -->
 			<a class="navbar-brand" href="{% url 'index' %}">
-				<img class="navbar-brand-item light-mode-item" src="assets/images/logo.svg" alt="">
-				<img class="navbar-brand-item dark-mode-item" src="assets/images/logo-light.svg" alt="">
+				<!--<img class="navbar-brand-item light-mode-item" src="  'assets/images/logo.svg' " alt="">
+				<img class="navbar-brand-item dark-mode-item" src="{% static 'assets/images/logo-light.svg' %}" alt="">-->
 			</a>
 			<!-- Logo END -->
 
@@ -252,7 +252,8 @@ JS libraries, plugins and custom scripts -->
 
 <!-- Template Functions -->
 <script src="{% static 'assets/js/functions.js' %}"></script>
-
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9085685689046565"
+     crossorigin="anonymous"></script>
 {% block js %}
 <!-- **************** MAIN CONTENT START **************** -->
 
