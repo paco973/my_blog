@@ -3,10 +3,7 @@ import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-# with open('/etc/config.json') as config_file:
-#    config = json.load(config_file)
-# SECURITY WARNING: keep the secret key used in production secret!
-#
+
 SECRET_KEY = "config.get('SECRET_KEY')"
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -14,8 +11,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', '165.232.40.239', 'www.whisky-tech.online', 'whisky-tech.online']
 
-# Application definition
-
+# Application
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -23,11 +19,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    # thirty partie
     'debug_toolbar',
     'django_quill',
     'storages',
 
+    # internal
     'user_profile',
     'app',
     'dashboard'
@@ -45,7 +42,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "debug_toolbar.middleware.DebugToolbarMiddleware",
     'my_blog.middleware.CurrentUserMiddleware',
-    'django.middleware.locale.LocaleMiddleware'
+    'django.middleware.locale.LocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'my_blog.urls'
@@ -76,7 +73,7 @@ WSGI_APPLICATION = 'my_blog.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-if DEBUG:
+if   DEBUG:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -132,17 +129,11 @@ USE_L10N = True
 
 if not DEBUG:
     from .cdn.conf import *
-
-    STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, 'static/'),
-    ]
     STATIC_URL = 'https://%s/%s/' % (AWS_S3_ENDPOINT_URL, AWS_LOCATION)
-
-    # DEFAULT_FILE_STORAGE = 'mdjguyane.storage_backends.PublicMediaStorage'
 else:
     STATIC_ROOT = BASE_DIR / 'static/'
     STATIC_URL = '/static/'
-    STATICFILES = BASE_DIR / 'staticfiles'
+    # STATICFILES = BASE_DIR / 'staticfiles'
     MEDIA_ROOT = BASE_DIR / 'media/'
     MEDIA_URL = '/media/'
 
