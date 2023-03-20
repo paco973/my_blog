@@ -8,5 +8,5 @@ urlpatterns = [
    path('padpazdkp', HommeView.as_view(), name='index'),
    path('', PostView.as_view(), name='post'),
    path('post/<int:id>/', PostView.as_view(), name='post_detail'),
-   path('category<int:id>/', CategoryView.as_view(), name='category')
+   path('category/<int:id>/', CategoryView.as_view(), name='category')
 ]
