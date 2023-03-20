@@ -1,11 +1,8 @@
 from django.contrib.auth import get_user_model
 from django.db import models
-
 from my_blog.middleware import get_current_user
 from .post_like import PostLike
 from .post_view import PostView
-from app.models.category import Category
-from app.models.tag import Tag
 from user_profile.models import User
 from django_quill.fields import QuillField
 
@@ -15,9 +12,9 @@ class Post(models.Model):
     body = QuillField()
     description = models.CharField(max_length=300)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, default=None)
-    tag = models.ManyToManyField(Tag)
-    is_published = models.BooleanField(default=False)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    tag = models.ManyToManyField('Tag')
+    is_published = models.BooleanField(default=True)
+    category = models.ForeignKey('Category', on_delete=models.CASCADE)
     image = models.ImageField(upload_to=f'post/', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)

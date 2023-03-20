@@ -35,7 +35,7 @@ Main contain START -->
                         </div>
                     {% endif %}
             <form method="POST" action="{% url 'dashboard_geston_post' %}" enctype="multipart/form-data">
- {% csrf_token %}
+ {% csrf_token  %}
               <!-- Main form -->
               <div class="row">
                 <div class="col-12">
@@ -53,6 +53,7 @@ Main contain START -->
                 <div class="mb-3">
                     <label class="form-label">Short description </label>
                     {{form.description}}
+
                 </div>
               </div>
 
@@ -61,11 +62,8 @@ Main contain START -->
                   <!-- Subject -->
                   <div class="mb-3">
                     <label class="form-label">Post body</label>
-                    <!-- Editor toolbar -->
-{{ form.body }}
-                      <!-- Main toolbar -->
-                     <div class="bg-body border rounded-bottom h-300 overflow-hidden" hidden id="quilleditor">
-                      </div>
+                               {{ form.body }}
+
                     </div>
                 </div>
                 <div class="col-12">
@@ -99,9 +97,9 @@ Main contain START -->
                 </div>
                 <div class="col-12">
                   <div class="form-check mb-3">
-                    <input class="form-check-input" type="checkbox" value="" id="postCheck">
+{{ form.is_published }}
                     <label class="form-check-label" for="postCheck">
-                      Make this post featured?
+                     is Published?
                     </label>
                   </div>
                 </div>

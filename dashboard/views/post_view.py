@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from ..forms.post_form import PostForm
+from dashboard.forms.post_form import PostForm
 
 
 class PostView(View):
@@ -10,6 +10,7 @@ class PostView(View):
 
         form = PostForm()
 
+
         context = {
             'form': form
         }
@@ -18,8 +19,9 @@ class PostView(View):
 
     def post(self, request):
         form = PostForm(request.POST, request.FILES)
-
+       
         if form.is_valid():
+            print('oaddikjidwdiji')
             form.save()
             context = {
                 'form': form

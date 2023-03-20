@@ -24,7 +24,7 @@ class SigninView(View):
             if user is not None:
                 login(request, user)
 
-                if request.POST['keep_signed_in']:
+                if form.cleaned_data['keep_signed_in']:
                     settings.SESSION_EXPIRE_AT_BROWSER_CLOSE = False
                 else:
                     settings.SESSION_EXPIRE_AT_BROWSER_CLOSE = True

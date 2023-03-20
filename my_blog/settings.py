@@ -10,7 +10,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "config.get('SECRET_KEY')"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', '165.232.40.239', 'www.whisky-tech.online', 'whisky-tech.online']
 
@@ -220,4 +220,4 @@ QUILL_CONFIG = {
 
 }
 
-
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
