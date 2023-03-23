@@ -1,13 +1,20 @@
 from pathlib import Path
-import os
+import environ
 
+
+env = environ.Env(
+    DEBUG=(bool, False)
+)
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = "config.get('SECRET_KEY')"
+
+environ.Env.read_env(BASE_DIR/ '.env')
+
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = ['127.0.0.1', '165.232.40.239', 'www.whisky-tech.online', 'whisky-tech.online']
 
@@ -73,7 +80,7 @@ WSGI_APPLICATION = 'my_blog.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-if   DEBUG:
+if DEBUG:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -133,7 +140,7 @@ if not DEBUG:
 else:
     STATIC_ROOT = BASE_DIR / 'static/'
     STATIC_URL = '/static/'
-    # STATICFILES = BASE_DIR / 'staticfiles'
+    STATICFILES = BASE_DIR / 'static'
     MEDIA_ROOT = BASE_DIR / 'media/'
     MEDIA_URL = '/media/'
 
@@ -210,5 +217,7 @@ QUILL_CONFIG = {
     }
 
 }
+
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

@@ -87,7 +87,7 @@
 
     <!-- Theme CSS -->
     <link id="style-switch" rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}">
-<script src="https://kit.fontawesome.com/f46bc433b7.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/f46bc433b7.js" crossorigin="anonymous"></script>
     {% block css %}
 
     {% endblock %}
@@ -193,35 +193,44 @@ Header START -->
                 </div>
                 <!-- Dark mode options END -->
                 <!-- Nav additional link -->
-                <!--				<div class="nav-item dropdown dropdown-toggle-icon-none">-->
-                <!--					<a class="nav-link dropdown-toggle" role="button" href="#" id="navAdditionalLink" data-bs-toggle="dropdown" aria-expanded="false">-->
-                <!--						<i class="bi bi-three-dots fs-4"></i>-->
-                <!--					</a>-->
-                <!--					<ul class="dropdown-menu dropdown-menu-end min-w-auto shadow rounded text-end" aria-labelledby="navAdditionalLink">-->
-                <!--						<li><a class="dropdown-item fw-normal" href="#">About</a></li>-->
-                <!--						<li><a class="dropdown-item fw-normal" href="#">Newsletter</a></li>-->
-                <!--						<li><a class="dropdown-item fw-normal" href="#">Author</a></li>-->
-                <!--						<li><a class="dropdown-item fw-normal" href="#">#Tags</a></li>-->
-                <!--						<li><a class="dropdown-item fw-normal" href="#">Contact</a></li>-->
-                <!--						<li><a class="dropdown-item fw-normal" href="#"><span class="badge bg-danger me-2 align-middle">2 Job</span>Careers</a></li>-->
-                <!--					</ul>-->
-                <!--				</div>-->
+                <!--  <div class="nav-item dropdown dropdown-toggle-icon-none">
+
+                      <a class="nav-link dropdown-toggle" role="button" href="#" id="navAdditionalLink"
+                         data-bs-toggle="dropdown" aria-expanded="false">
+                          <i class="bi bi-three-dots fs-4"></i>
+                      </a>
+                      <ul class="dropdown-menu dropdown-menu-end min-w-auto shadow rounded text-end"
+                          aria-labelledby="navAdditionalLink">
+                          <li><a class="dropdown-item fw-normal" href="#">About</a></li>
+                          <li><a class="dropdown-item fw-normal" href="#">Newsletter</a></li>
+                          <li><a class="dropdown-item fw-normal" href="#">Author</a></li>
+                          <li><a class="dropdown-item fw-normal" href="#">#Tags</a></li>
+                          <li><a class="dropdown-item fw-normal" href="#">Contact</a></li>
+                          <li><a class="dropdown-item fw-normal" href="#"><span class="badge bg-danger me-2 align-middle">2 Job</span>Careers</a>
+                          </li>
+                      </ul>
+                  </div>
+                  -->
                 <!-- Nav Button -->
-                <!--				<div class="nav-item d-none d-md-block">-->
-                <!--					<a href="#" class="btn btn-sm btn-danger mb-0 mx-2">Subscribe!</a>-->
-                <!--				</div>-->
+                <!-- <div class="nav-item d-none d-md-bloc">
+                     <a href="#" class="btn btn-sm btn-danger mb-0 mx-2">Subscribe!</a>
+                 </div>-->
                 <!-- Nav Search -->
-                <!--				<div class="nav-item dropdown nav-search dropdown-toggle-icon-none">-->
-                <!--					<a class="nav-link pe-0 dropdown-toggle" role="button" href="#" id="navSearch" data-bs-toggle="dropdown" aria-expanded="false">-->
-                <!--						<i class="bi bi-search fs-4"> </i>-->
-                <!--					</a>-->
-                <!--					<div class="dropdown-menu dropdown-menu-end shadow rounded p-2" aria-labelledby="navSearch">-->
-                <!--					  <form class="input-group">-->
-                <!--					    <input class="form-control border-success" type="search" placeholder="Search" aria-label="Search">-->
-                <!--					    <button class="btn btn-success m-0" type="submit">Search</button>-->
-                <!--					  </form>-->
-                <!--					</div>-->
-                <!--				</div>-->
+                <div class="nav-item dropdown nav-search dropdown-toggle-icon-none">
+                    <a class="nav-link pe-0 dropdown-toggle" role="button" href="#" id="navSearch"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-search fs-4"> </i>
+                        <i class="fa fa-search fs-4"> </i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end shadow rounded p-2" aria-labelledby="navSearch">
+                        <form class="input-group" method="get" action="{% url 'post' %}">
+                            <input class="form-control border-success" autocapitalize="off" type="search" name="q"
+                                   placeholder="Search"
+                                   aria-label="Search">
+                            <button class="btn btn-success m-0" type="submit">Search</button>
+                        </form>
+                    </div>
+                </div>
             </div>
             <!-- Nav right END -->
         </div>
@@ -265,16 +274,15 @@ JS libraries, plugins and custom scripts -->
 
 <!-- Bootstrap JS -->
 <script src="{% static 'assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
-
 <!-- Template Functions -->
 <script src="{% static 'assets/js/functions.js' %}"></script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9085685689046565"
-        crossorigin="anonymous"></script>
+
 {% block js %}
     <!-- **************** MAIN CONTENT START **************** -->
 
     <!-- **************** MAIN CONTENT END **************** -->
 {% endblock %}
-
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9085685689046565"
+        crossorigin="anonymous"></script>
 </body>
 </html>

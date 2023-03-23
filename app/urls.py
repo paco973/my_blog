@@ -7,6 +7,6 @@ from .views.category_view import CategoryView
 urlpatterns = [
    path('padpazdkp', HommeView.as_view(), name='index'),
    path('', PostView.as_view(), name='post'),
-   path('post/<int:id>/', PostView.as_view(), name='post_detail'),
-   path('category/<int:id>/', CategoryView.as_view(), name='category')
+   path('post/<slug:slug>/', PostView.as_view(), name='post_detail'),
+   path('category/<slug:slug>/', CategoryView.as_view(), name='category')
 ]

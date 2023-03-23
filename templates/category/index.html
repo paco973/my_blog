@@ -60,7 +60,7 @@ Main content START -->
 								</div>
 							</div>
 							<div class="card-body px-0 pt-3">
-								<h4 class="card-title"><a href="{% url 'post_detail' post.id %}" class="btn-link text-reset fw-bold">{{post.title}}</a></h4>
+								<h4 class="card-title"><a href="{{ post.get_absolut_url }}" class="btn-link text-reset fw-bold">{{post.title}}</a></h4>
 								<p class="card-text">{{post.description}}</p>
 								<!-- Card info -->
 								<ul class="nav nav-divider align-items-center d-none d-sm-inline-block">
@@ -115,7 +115,7 @@ Main content START -->
                         {% for cat in categories %}
 						<div class="d-flex justify-content-between align-items-center bg-{{cat.color}} bg-opacity-15 rounded p-2 position-relative">
 							<h6 class="m-0 text-{{cat.color}}">{{cat.name|title}}</h6>
-							<a href="{% url 'category' cat.id %}" class="badge bg-{{cat.color}} text-dark stretched-link">{{cat.posts.count}}</a>
+							<a href="{{cat.get_absolut_url}}" class="badge bg-{{cat.color}} text-dark stretched-link">{{cat.posts.count}}</a>
 						</div>
                         {% endfor %}
 

@@ -17,7 +17,7 @@ Inner intro START -->
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
-        <a href="{% url 'category' post.category.id %}" class="badge text-bg-{{ post.category.color }} mb-2"><i class="fas fa-circle me-2 small fw-bold"></i>{{post.category}}</a>
+        <a href="{{post.category.get_absolut_url}}" class="badge text-bg-{{ post.category.color }} mb-2"><i class="fas fa-circle me-2 small fw-bold"></i>{{post.category}}</a>
 				<h1>{{post.title}}</h1>
 			</div>
 			 <p class="lead">{{post.description}} </p>

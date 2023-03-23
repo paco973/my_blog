@@ -14,21 +14,26 @@ def _view_id(request):
 class PostView(View):
     template_name = 'post/index.html'
 
-    def get(self, request, id=None):
-        if not id:
+    def get(self, request, slug=None):
+
+        if not slug:
             # Get all posts and categories
-            posts = Post.objects.all()
+            querry = request.GET.get('q') or ''
+
+            lookup = Q(title__icontains=querry)
+
+            qs = Post.objects.all()
             categories = Category.objects.all()
             recommended_posts = self.recommended_posts(request)
             context = {
-                'posts': posts,
+                'posts':  qs.filter(lookup),
                 'categories': categories,
                 'recommended_posts': recommended_posts
             }
             return render(request, self.template_name, context)
 
         # Get the post and its related posts
-        post = get_object_or_404(Post, id=id)
+        post = get_object_or_404(Post, slug=slug)
 
         # Get the view object for the current user and post
 

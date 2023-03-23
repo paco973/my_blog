@@ -11,7 +11,7 @@ class HommeView(View):
 
     def get(self, request):
 
-        return redirect('post')
+        # return redirect('post')
         posts = Post.objects.all()
         categories = Category.objects.all()
 
