@@ -18,15 +18,13 @@ class PostView(View):
 
         if not slug:
             # Get all posts and categories
-            querry = request.GET.get('q') or ''
+            query = request.GET.get('q')
 
-            lookup = Q(title__icontains=querry)
-
-            qs = Post.objects.all()
+            qs = Post.objects.search(query=query)
             categories = Category.objects.all()
             recommended_posts = self.recommended_posts(request)
             context = {
-                'posts':  qs.filter(lookup),
+                'posts':  qs,
                 'categories': categories,
                 'recommended_posts': recommended_posts
             }
