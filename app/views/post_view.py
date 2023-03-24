@@ -20,7 +20,7 @@ class PostView(View):
             # Get all posts and categories
             query = request.GET.get('q')
 
-            qs = Post.objects.search(query=query)
+            qs = Post.objects.get_published_post(query=query)
             categories = Category.objects.all()
             recommended_posts = self.recommended_posts(request)
             context = {
@@ -69,10 +69,11 @@ class PostView(View):
             viewed_posts = pv.objects.filter(key=_view_id(request)).values_list('post', flat=True)
         else:
             viewed_posts = pv.objects.filter(key=_view_id(request), user=user).values_list('post', flat=True)
-        tags = Post.objects.filter(pk__in=viewed_posts).values_list('tag', flat=True)
-        categories = Post.objects.filter(pk__in=viewed_posts).values_list('category', flat=True)
 
-        related_posts = Post.objects.filter(Q(tag__in=tags) | Q(category__in=categories)) \
+        tags = Post.objects.get_published_post().filter(pk__in=viewed_posts).values_list('tag', flat=True)
+        categories = Post.objects.get_published_post().filter(pk__in=viewed_posts).values_list('category', flat=True)
+
+        related_posts = Post.objects.get_published_post().filter(Q(tag__in=tags) | Q(category__in=categories)) \
                             .exclude(id__in=viewed_posts) \
                             .distinct() \
                             .order_by('-created_at')[:5]

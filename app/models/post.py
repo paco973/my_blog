@@ -7,7 +7,12 @@ from .post_like import PostLike
 from user_profile.models import User
 from django_quill.fields import QuillField
 from django.db.models import Q
+from django.utils.text import gettext_lazy as _
 
+class STATUS(models.TextChoices):
+    PUBLISHED = 'published', _('Published')
+    REMOVED = 'removed', _('removed')
+    DRAFT = 'draft', _('Draft')
 
 class PostQuerySet(models.QuerySet):
 
@@ -28,6 +33,9 @@ class PostManager(models.Manager):
     def search(self, query=None):
         return self.get_queryset().search(query=query)
 
+    def get_published_post(self, query=None):
+        return self.get_queryset().search(query=query).filter(is_published=True)
+
 
 class Post(models.Model):
     title = models.CharField(max_length=255)
@@ -35,12 +43,13 @@ class Post(models.Model):
     description = models.TextField()
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, default=None)
     tag = models.ManyToManyField('Tag')
-    is_published = models.BooleanField(default=True)
+    status = models.CharField(max_length=50, choices=STATUS, default=STATUS.DRAFT)
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
     image = models.ImageField(upload_to=f'post/', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
     slug = models.SlugField(unique=True, blank=True, null=True)
+    published_date = models.DateField(null=True, blank=True)
 
     objects = PostManager()
 
