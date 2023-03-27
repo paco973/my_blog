@@ -34,7 +34,7 @@ Main contain START -->
 	                       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     {% endif %}
-            <form method="POST" action="{% url 'dashboard_geston_post' %}" enctype="multipart/form-data">
+            <form method="POST" action="{% url 'create_post' %}" enctype="multipart/form-data">
  {% csrf_token  %}
               <!-- Main form -->
               <div class="row">

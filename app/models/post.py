@@ -9,10 +9,12 @@ from django_quill.fields import QuillField
 from django.db.models import Q
 from django.utils.text import gettext_lazy as _
 
+
 class STATUS(models.TextChoices):
     PUBLISHED = 'published', _('Published')
     REMOVED = 'removed', _('removed')
     DRAFT = 'draft', _('Draft')
+
 
 class PostQuerySet(models.QuerySet):
 
@@ -34,7 +36,7 @@ class PostManager(models.Manager):
         return self.get_queryset().search(query=query)
 
     def get_published_post(self, query=None):
-        return self.get_queryset().search(query=query).filter(is_published=True)
+        return self.get_queryset().search(query=query).filter(status=STATUS.PUBLISHED)
 
 
 class Post(models.Model):
@@ -43,7 +45,7 @@ class Post(models.Model):
     description = models.TextField()
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, default=None)
     tag = models.ManyToManyField('Tag')
-    status = models.CharField(max_length=50, choices=STATUS, default=STATUS.DRAFT)
+    status = models.CharField(max_length=50, choices=STATUS.choices, default=STATUS.DRAFT)
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
     image = models.ImageField(upload_to=f'post/', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -73,3 +75,11 @@ class Post(models.Model):
 
     def get_absolut_url(self):
         return reverse('post_detail', kwargs={"slug": self.slug})
+
+    def get_status_color(self):
+        if self.status == STATUS.PUBLISHED:
+            return 'success'
+        if self.status == STATUS.DRAFT:
+            return 'warning'
+        if self.status == STATUS.REMOVED:
+            return 'danger'

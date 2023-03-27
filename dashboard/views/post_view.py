@@ -1,14 +1,20 @@
 from django.shortcuts import render, redirect
 from django.views import View
+
+from app.models import Post
 from dashboard.forms.post_form import PostForm
 
 
 class PostView(View):
     template_name = 'dashboard/post/index.html'
 
-    def get(self, request):
+    def get(self, request, slug=None):
 
-        form = PostForm()
+        if slug is None:
+            form = PostForm()
+        else:
+            post = Post.objects.get(slug=slug)
+            form = PostForm(instance=post)
 
 
         context = {
