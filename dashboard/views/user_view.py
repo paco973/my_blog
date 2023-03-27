@@ -22,7 +22,7 @@ class UserView(View):
         if not request.user.is_authenticated:
             return redirect('post')
 
-        form = ProfileForm( request.POST, request.FILES,instance=request.user)
+        form = ProfileForm( request.POST, request.FILES, instance=request.user)
         if form.is_valid():
             form.save()
 

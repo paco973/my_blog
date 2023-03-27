@@ -122,7 +122,7 @@
                                     {% for last_post in last_posts %}
                                         <div class="col-12">
                                             <div class="d-flex align-items-center position-relative">
-                                                <img class="w-60 rounded" src="{{ post.image.url }}" alt="product">
+                                                <img class="w-60 rounded" src="{{ last_post.image.url }}" alt="product">
                                                 <div class="ms-3">
                                                     <a href="{{ last_post.get_absolut_url }}"
                                                        class="h6 stretched-link">{{ last_post.title|truncatewords:8|title }}</a>
@@ -483,7 +483,11 @@
                                                     <h6 class="mb-0"><a href="#">{{ post.user.fullname }}</a></h6>
                                                 </td>
                                                 <!-- Table data -->
-                                                <td>{{ post.published_date|date }}</td>
+                                                {% if request.user.is_superuser %}
+                                                    <td>{{ post.published_date }}</td>
+                                                {% else %}
+                                                    <td>{{ post.published_date|date }}</td>
+                                                {% endif %}
                                                 <!-- Table data -->
                                                 <td>
                                                     <a href="{{ post.category.get_absolut_url }}"
@@ -498,10 +502,11 @@
                                                 <!-- Table data -->
                                                 <td>
                                                     <div class="d-flex gap-2">
-                                                        <a href="#" class="btn btn-light btn-round mb-0"
+                                                        <a href="{% url 'delete_post' post.id %}"
+                                                           class="btn btn-light btn-round mb-0"
                                                            data-bs-toggle="tooltip" data-bs-placement="top"
                                                            title="Delete"><i class="bi bi-trash"></i></a>
-                                                        <a href="{% url 'edit_post' post.slug %}"
+                                                        <a href="{{ post.get_edit_url }}"
                                                            class="btn btn-light btn-round mb-0" data-bs-toggle="tooltip"
                                                            data-bs-placement="top" title="Edit"><i
                                                                 class="bi bi-pencil-square"></i></a>
@@ -514,7 +519,6 @@
                                     </table>
                                 </div>
                                 <!-- Blog list table END -->
-
                                 <!-- Pagination START -->
                                 <div class="d-sm-flex justify-content-sm-between align-items-sm-center mt-4 mt-sm-3">
                                     <!-- Content -->
@@ -552,3 +556,4 @@
 
 
 {% endblock %}
+

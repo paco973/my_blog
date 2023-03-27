@@ -19,4 +19,4 @@ class HommeView(View):
             'posts': posts,
             'categories': categories
         }
-        return render(request, self.template_name,context )
+        return render(request, self.template_name, context)

@@ -3,6 +3,7 @@ from django.shortcuts import reverse
 from .post import Post
 
 
+
 class Category(models.Model):
     name = models.CharField(max_length=255)
     image = models.ImageField(upload_to='category/', default='paco.pgn', null=True)
@@ -19,7 +20,7 @@ class Category(models.Model):
 
     @property
     def posts(self):
-        return Post.objects.filter(category=self)
+        return Post.objects.get_published_post().filter(category=self)
 
     def get_absolut_url(self):
         return reverse('category', kwargs={"slug":self.slug})

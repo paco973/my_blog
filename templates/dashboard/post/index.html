@@ -2,128 +2,148 @@
 {% load static %}
 
 {% block css %}
-  <link rel="stylesheet" type="text/css" href="{% static 'assets/vendor/quill/css/quill.snow.css' %}">
- {% include 'django_quill/media.html' %}
-    {% include 'django_quill/media.html' %}
-  {% endblock %}
+
+
+{% endblock %}
 
 {% block content %}
 
-<main>
+    <main>
 
-<!-- =======================
-Main contain START -->
-<section class="py-4">
-	<div class="container">
-    <div class="row pb-4">
-			<div class="col-12">
-        <!-- Title -->
-					<h1 class="mb-0 h2">Create a post</h1>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-12">
-				<!-- Chart START -->
-				<div class="card border">
-					<!-- Card body -->
-					<div class="card-body">
-            <!-- Form START -->
-             {% if form.errors %}
-                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-	                       {{ form.errors }}
-	                       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    {% endif %}
-            <form method="POST" action="{% url 'create_post' %}" enctype="multipart/form-data">
- {% csrf_token  %}
-              <!-- Main form -->
-              <div class="row">
-                <div class="col-12">
-                  <!-- Post name -->
-                  <div class="mb-3">
-                    <label class="form-label">Post name</label>
-                    {{form.title}}
-                    <small>Moving heaven divide two sea female great midst spirit</small>
-                  </div>
-                </div>
-
-
-              <!-- Short description -->
-              <div class="col-12">
-                <div class="mb-3">
-                    <label class="form-label">Short description </label>
-                    {{form.description}}
-
-                </div>
-              </div>
-
-              <!-- Main toolbar -->
-                <div class="col-md-12">
-                  <!-- Subject -->
-                  <div class="mb-3">
-                    <label class="form-label">Post body</label>
-                               {{ form.body }}
-
+        <!-- =======================
+        Main contain START -->
+        <section class="py-4">
+            <div class="container">
+                <div class="row pb-4">
+                    <div class="col-12">
+                        <!-- Title -->
+                        <h1 class="mb-0 h2">Post</h1>
                     </div>
                 </div>
-                <div class="col-12">
-                  <div class="mb-3">
-                  <!-- Image -->
-                  <div class="position-relative">
-                    <h6 class="my-2">Upload post image here, or<a href="#!" class="text-primary"> Browse</a></h6>
-                    <label class="w-100" style="cursor:pointer;">
-                      <span>
-                          {{form.image}}
-                      </span>
-                    </label>
-                  </div>
-                  <p class="small mb-0 mt-2"><b>Note:</b> Only JPG, JPEG and PNG. Our suggested dimensions are 600px * 450px. Larger image will be cropped to 4:3 to fit our thumbnails/previews.</p>
-                  </div>
-                </div>
-                <div class="col-lg-7">
-                  <!-- Tags -->
-                  <div class="mb-3">
-                    <label class="form-label">Tags</label>
-                      {{form.tag}}
-                    <small>Maximum of 14 keywords. Keywords should all be in lowercase and separated by commas. e.g. javascript, react, marketing.</small>
-                  </div>
-                </div>
-                <div class="col-lg-5">
-                  <!-- Message -->
-                  <div class="mb-3">
-                    <label class="form-label">Category</label>
-                      {{form.category}}
-                  </div>
-                </div>
-                <div class="col-12">
-                  <div class="form-check mb-3">
-{{ form.is_published }}
-                    <label class="form-check-label" for="postCheck">
-                     is Published?
-                    </label>
-                  </div>
-                </div>
-                <!-- Create post button -->
-                <div class="col-md-12 text-start">
-                  <button class="btn btn-primary w-100" type="submit">Create post</button>
-                </div>
-              </div>
-            </form>
-            <!-- Form END -->
-					</div>
-				</div>
-				<!-- Chart END -->
-			</div>
-    </div>
-	</div>
-</section>
-<!-- =======================
-Main contain END -->
+                <div class="row">
+                    <div class="col-12">
+                        <!-- Chart START -->
+                        <div class="card border">
+                            <!-- Card body -->
+                            <div class="card-body">
+                                <!-- Form START -->
+                                {% if form.errors %}
+                                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                        {{ form.errors }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                aria-label="Close"></button>
+                                    </div>
+                                {% endif %}
 
-</main>
+                                {% if url is None %}
+                                    <form method="POST" action="{% url 'create_post' %}"
+                                          enctype="multipart/form-data">
+                                {% else %}
+                                    <form method="POST" action="{{ url}}"
+                                          enctype="multipart/form-data">
+                                {% endif %}
+                                {% csrf_token %}
+                                <!-- Main form -->
+                                <div class="row">
+                                    <div class="col-12">
+                                        <!-- Post name -->
+                                        <div class="mb-3">
+                                            <label class="form-label">Post name</label>
+                                            {{ form.title }}
+                                            <small>Moving heaven divide two sea female great midst spirit</small>
+                                        </div>
+                                    </div>
 
-{% endblock%}
 
-{% block js %}
-<script src="{% static 'assets/vendor/quill/js/quill.min.js' %}"></script>
+                                    <!-- Short description -->
+                                    <div class="col-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">Short description </label>
+                                            {{ form.description }}
+
+                                        </div>
+                                    </div>
+
+                                    <!-- Main toolbar -->
+                                    <div class="col-md-12">
+                                        <!-- Subject -->
+                                        <div class="mb-3">
+                                            <label class="form-label">Post body</label>
+                                            <br/>
+
+                                            {{ form.body }}
+                                            {{ form.media }}
+                                        </div>
+
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="mb-3">
+                                            <!-- Image -->
+                                            <div class="position-relative">
+                                                <label class="w-100" style="cursor:pointer;">
+                                                    {{ form.image.label }} </label>
+
+
+                                                {{ form.image }}
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="form-label mb-3">
+                                            <label class="form-label"
+                                                   for="postCheck">{{ form.status.label }} </label>
+                                            {{ form.status }}
+
+                                        </div>
+
+                                    </div>
+                                    <div class="col-6">
+
+                                        <div class="form-check mb-3">
+                                            <label class="form-label"
+                                                   for="postCheck">{{ form.published_date.label }} </label>
+                                            {{ form.published_date }}
+
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <!-- Tags -->
+                                        <div class="mb-3">
+                                            <label class="form-label">Tags</label>
+                                            {{ form.tag }}
+
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <!-- Message -->
+                                        <div class="mb-3">
+                                            <label class="form-label">Category</label>
+                                            {{ form.category }}
+                                        </div>
+                                    </div>
+
+                                    <!-- Create post button -->
+                                    <div class="col-md-12 text-start">
+                                        <button class="btn btn-primary w-100" type="submit">Save</button>
+                                    </div>
+                                </div>
+                                </form>
+                                <!-- Form END -->
+                            </div>
+                        </div>
+                        <!-- Chart END -->
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- =======================
+        Main contain END -->
+
+    </main>
+
 {% endblock %}
+
+

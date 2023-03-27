@@ -24,7 +24,7 @@ class PostView(View):
             categories = Category.objects.all()
             recommended_posts = self.recommended_posts(request)
             context = {
-                'posts':  qs,
+                'posts': qs,
                 'categories': categories,
                 'recommended_posts': recommended_posts
             }

@@ -3,6 +3,7 @@ from django.views import View
 from app.models import Category
 
 
+
 class CategoryView(View):
     template_name = 'category/index.html'
 

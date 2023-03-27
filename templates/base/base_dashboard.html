@@ -87,7 +87,7 @@
 
     <!-- Theme CSS -->
     <link id="style-switch" rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}">
-  {{ form.media }}
+
 
 
     {% block css %}
@@ -123,7 +123,7 @@ Header START -->
                 <ul class="navbar-nav navbar-nav-scroll mx-auto">
 
                     <!-- Nav item 1 Demos -->
-                    <li class="nav-item"><a class="nav-link" href="dashboard.html"><i class="bi bi-house-door me-1"></i>Dashboard</a>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'dashboard' %}"><i class="bi bi-house-door me-1"></i>Dashboard</a>
                     </li>
 
                     <!-- Nav item 2 Post -->
