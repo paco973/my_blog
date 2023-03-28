@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Akami- {% block tite %}
+    <title>Lawa Zone- {% block tite %}
 
     {% endblock %}
     </title>
@@ -82,8 +82,8 @@
           rel="stylesheet">
 
     <!-- Plugins CSS -->
-    <link rel="stylesheet" type="text/css" href="{% static 'assets/font-awesome/css/all.min.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'assets/bootstrap-icons/bootstrap-icons.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/vendor/font-awesome/css/all.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}">
 
     <!-- Theme CSS -->
     <link id="style-switch" rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}">
@@ -220,7 +220,6 @@ Header START -->
                     <a class="nav-link pe-0 dropdown-toggle" role="button" href="#" id="navSearch"
                        data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="bi bi-search fs-4"> </i>
-                        <i class="fa fa-search fs-4"> </i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end shadow rounded p-2" aria-labelledby="navSearch">
                         <form class="input-group" method="get" action="{% url 'post' %}">

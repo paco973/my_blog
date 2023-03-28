@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import View
-from app.models import Post, Category, Tag, PostView as pv
+
+from app.forms.comment_form import CommentForm
+from app.models import Post, Category, Comment, PostView as pv
 from django.db.models import Q
 
 
@@ -9,6 +11,16 @@ def _view_id(request):
     if not view_id:
         view_id = request.session.create()
     return view_id
+
+
+def related_posts( post):
+    related_posts = Post.objects.get_published_post() \
+                        .filter(Q(tag__in=post.tag.all()) | Q(category=post.category)) \
+                        .exclude(id=post.id) \
+                        .distinct() \
+                        .order_by('-created_at')[:5]
+
+    return related_posts
 
 
 class PostView(View):
@@ -50,15 +62,24 @@ class PostView(View):
                     view.save()
                 except:
                     print('ça existe déjà')
-
         else:
             view = pv.objects.filter(post=post, key=_view_id(request))
             if view.count() == 0:
                 view = pv.objects.create(key=_view_id(request), post=post)
                 view.save()
 
+        preview = Post.objects.get_published_post().filter(published_date__lt=post.published_date).first()
+        next = Post.objects.get_published_post().filter(published_date__gt=post.published_date).last()
+        comments = Comment.objects.filter(post=post)
+        comment_form = CommentForm()
+
         context = {
             'post': post,
+            'related_posts': related_posts(post),
+            'next': next,
+            'preview': preview,
+            'comments': comments,
+            'comment_form': comment_form
         }
         return render(request, 'post/post_detail.html', context)
 
