@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Blogzine </title>
+    <title>Lawa Zone </title>
 
     <!-- Meta Tags -->
     <meta charset="utf-8">
@@ -71,7 +71,7 @@
     </script>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="assets/images/favicon.ico">
+    <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}">
 
     <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -87,6 +87,7 @@
 
     <!-- Theme CSS -->
     <link id="style-switch" rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}">
+  <script src="https://kit.fontawesome.com/f46bc433b7.js" crossorigin="anonymous"></script>
 
 
 
@@ -132,36 +133,35 @@ Header START -->
                            aria-haspopup="true" aria-expanded="false"><i class="bi bi-pencil me-1"></i>Post</a>
                         <ul class="dropdown-menu" aria-labelledby="postMenu">
                             <!-- dropdown submenu -->
-                            <li><a class="dropdown-item" href="dashboard-post-list.html">Post List</a></li>
-                            <li><a class="dropdown-item" href="dashboard-post-categories.html">Post Categories</a></li>
+{#                            <li><a class="dropdown-item" href="dashboard-post-list.html">Post List</a></li>#}
+{#                            <li><a class="dropdown-item" href="dashboard-post-categories.html">Post Categories</a></li>#}
                             <li><a class="dropdown-item" href="{% url 'create_post' %}">Create a Post</a></li>
-                            <li><a class="dropdown-item" href="dashboard-post-edit.html">Edit Post</a></li>
                         </ul>
                     </li>
 
                     <!-- Nav item 3 Pages -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="pagesMenu" data-bs-toggle="dropdown"
-                           aria-haspopup="true" aria-expanded="false"><i class="bi bi-folder me-1"></i>Pages</a>
-                        <ul class="dropdown-menu" aria-labelledby="pagesMenu">
-                            <li><a class="dropdown-item" href="dashboard-author-list.html">Author List</a></li>
-                            <li><a class="dropdown-item" href="dashboard-author-single.html">Author Single</a></li>
-                            <li><a class="dropdown-item" href="dashboard-edit-profile.html">Edit Profile</a></li>
-                            <li><a class="dropdown-item" href="dashboard-reviews.html">Reviews</a></li>
-                            <li><a class="dropdown-item" href="dashboard-settings.html">Settings</a></li>
-                            <li class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="https://support.webestica.com/" target="_blank"> <i
-                                    class="text-warning fa-fw bi bi-life-preserver me-2"></i>Support</a></li>
-                            <li><a class="dropdown-item" href="docs/index.html" target="_blank"> <i
-                                    class="text-danger fa-fw bi bi-card-text me-2"></i>Documentation</a></li>
-                            <li class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="https://blogzine.webestica.com/rtl" target="_blank"> <i
-                                    class="text-info fa-fw bi bi-toggle-off me-2"></i>RTL demo</a></li>
-                            <li><a class="dropdown-item" href="https://themes.getbootstrap.com/store/webestica/"
-                                   target="_blank"> <i class="text-success fa-fw bi bi-cloud-download-fill me-2"></i>Buy
-                                blogzine!</a></li>
-                        </ul>
-                    </li>
+{#                    <li class="nav-item dropdown">#}
+{#                        <a class="nav-link dropdown-toggle" href="#" id="pagesMenu" data-bs-toggle="dropdown"#}
+{#                           aria-haspopup="true" aria-expanded="false"><i class="bi bi-folder me-1"></i>Pages</a>#}
+{#                        <ul class="dropdown-menu" aria-labelledby="pagesMenu">#}
+{#                            <li><a class="dropdown-item" href="dashboard-author-list.html">Author List</a></li>#}
+{#                            <li><a class="dropdown-item" href="dashboard-author-single.html">Author Single</a></li>#}
+{#                            <li><a class="dropdown-item" href="dashboard-edit-profile.html">Edit Profile</a></li>#}
+{#                            <li><a class="dropdown-item" href="dashboard-reviews.html">Reviews</a></li>#}
+{#                            <li><a class="dropdown-item" href="dashboard-settings.html">Settings</a></li>#}
+{#                            <li class="dropdown-divider"></li>#}
+{#                            <li><a class="dropdown-item" href="https://support.webestica.com/" target="_blank"> <i#}
+{#                                    class="text-warning fa-fw bi bi-life-preserver me-2"></i>Support</a></li>#}
+{#                            <li><a class="dropdown-item" href="docs/index.html" target="_blank"> <i#}
+{#                                    class="text-danger fa-fw bi bi-card-text me-2"></i>Documentation</a></li>#}
+{#                            <li class="dropdown-divider"></li>#}
+{#                            <li><a class="dropdown-item" href="https://blogzine.webestica.com/rtl" target="_blank"> <i#}
+{#                                    class="text-info fa-fw bi bi-toggle-off me-2"></i>RTL demo</a></li>#}
+{#                            <li><a class="dropdown-item" href="https://themes.getbootstrap.com/store/webestica/"#}
+{#                                   target="_blank"> <i class="text-success fa-fw bi bi-cloud-download-fill me-2"></i>Buy#}
+{#                                blogzine!</a></li>#}
+{#                        </ul>#}
+{#                    </li>#}
                 </ul>
 
                 <!-- Search dropdown START -->
@@ -430,3 +430,4 @@ JS libraries, plugins and custom scripts -->
 
 </body>
 </html>
+
