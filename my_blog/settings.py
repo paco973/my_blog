@@ -16,7 +16,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = ['127.0.0.1', '165.232.40.239', 'www.whisky-tech.online', 'whisky-tech.online']
+ALLOWED_HOSTS = ['127.0.0.1', 'lawa-zone.fr', 'www.lawa-zone.fr', '165.232.40.239', 'www.whisky-tech.online', 'whisky-tech.online']
 
 # Application
 INSTALLED_APPS = [
