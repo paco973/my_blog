@@ -159,13 +159,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CKEDITOR_UPLOAD_PATH = "post/"
 
 
-CKEDITOR_CONFIGSdsdsds = {
-    'default': {
-        'toolbar': 'full',
-        'height': 300,
-
-    },
-}
 
 CKEDITOR_CONFIGS = {
     'default': {
