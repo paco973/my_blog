@@ -1,22 +1,20 @@
 from pathlib import Path
 import environ
 
-
 env = environ.Env(
     DEBUG=(bool, False)
 )
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-environ.Env.read_env(BASE_DIR/ '.env')
+environ.Env.read_env(BASE_DIR / '.env')
 
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = ['127.0.0.1', 'lawa-zone.fr', 'www.lawa-zone.fr', '165.232.40.239', 'www.whisky-tech.online', 'whisky-tech.online']
+ALLOWED_HOSTS = ['127.0.0.1', 'lawa-zone.fr', 'www.lawa-zone.fr', '165.232.40.239']
 
 # Application
 INSTALLED_APPS = [
@@ -28,8 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # thirty partie
     'debug_toolbar',
-    'ckeditor',
-    'ckeditor_uploader',
+    'froala_editor',
     'storages',
 
     # internal
@@ -76,8 +73,6 @@ TEMPLATES = [
         },
     },
 ]
-
-
 
 WSGI_APPLICATION = 'my_blog.wsgi.application'
 
@@ -139,7 +134,6 @@ USE_L10N = True
 
 if not DEBUG:
     from .cdn.conf import *
-    STATIC_URL = 'https://%s/%s/' % (AWS_S3_ENDPOINT_URL, AWS_LOCATION)
 else:
     STATIC_ROOT = BASE_DIR / 'static/'
     STATIC_URL = '/static/'
@@ -156,69 +150,33 @@ INTERNAL_IPS = ["127.0.0.1"]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CKEDITOR_UPLOAD_PATH = "post/"
-
-
-
-CKEDITOR_CONFIGS = {
-    'default': {
-
-        'toolbar_Custom': [
-            {'name': 'document', 'items': ['Source', '-', 'Save', 'NewPage', 'Preview', 'Print', '-', 'Templates']},
-            {'name': 'clipboard', 'items': ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo']},
-            {'name': 'editing', 'items': ['Find', 'Replace', '-', 'SelectAll']},
-            {'name': 'forms',
-             'items': ['Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton',
-                       'HiddenField']},
-            '/',
-            {'name': 'basicstyles',
-             'items': ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat']},
-            {'name': 'paragraph',
-             'items': ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-',
-                       'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl',
-                       'Language']},
-            {'name': 'links', 'items': ['Link', 'Unlink', 'Anchor']},
-            {'name': 'insert',
-             'items': ['Image', 'Youtube','Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe']},
-            '/',
-            {'name': 'styles', 'items': ['Styles', 'Format', 'Font', 'FontSize']},
-            {'name': 'colors', 'items': ['TextColor', 'BGColor']},
-            {'name': 'tools', 'items': ['Maximize', 'ShowBlocks']},
-            {'name': 'about', 'items': ['CodeSnippet']},
-            {'name': 'about', 'items': ['About']},
-            '/',  # put this to force next toolbar on new line
-            {'name': 'yourcustomtools', 'items': [
-                # put the name of your editor.ui.addButton here
-                'Preview',
-                'Maximize',
-
-            ]},
-        ],
-        'toolbar': 'Custom',  # put selected toolbar config here
-        'toolbarGroups': [{ 'name': 'document', 'groups': [ 'mode', 'document', 'doctools' ] }],
-        'height': 400,
-        # 'width': '100%',
-        'filebrowserWindowHeight': 725,
-        'filebrowserWindowWidth': 940,
-        'toolbarCanCollapse': True,
-        'mathJaxLib': '//cdn.mathjax.org/mathjax/2.2-latest/MathJax.js?config=TeX-AMS_HTML',
-        'tabSpaces': 4,
-        'extraPlugins': ','.join([
-            'uploadimage', # the upload image feature
-            # your extra plugins here
-            'div',
-            'autolink',
-            'autoembed',
-            'embedsemantic',
-            'autogrow',
-            'devtools',
-            'widget',
-            'lineutils',
-            'clipboard',
-            'dialog',
-            'dialogui',
-            'elementspath',
-            'codesnippet',
-        ]),
-    }
+FROALA_EDITOR_PLUGINS = {
+    'align': True,
+    'char_counter': True,
+    'code_beautifier': True,
+    'code_view': True,
+    'colors': True,
+    'draggable': True,
+    'embedly': True,
+    'emoticons': True,
+    'entities': True,
+    'file': True,
+    'font_family': True,
+    'font_size': True,
+    'fullscreen': True,
+    'image': True,
+    'image_manager': True,
+    'inline_style': True,
+    'line_breaker': True,
+    'link': True,
+    'lists': True,
+    'paragraph_format': True,
+    'paragraph_style': True,
+    'quick_insert': True,
+    'quote': True,
+    'save': True,
+    'table': True,
+    'url': True,
+    'video': True,
+    'word_paste': True,
 }

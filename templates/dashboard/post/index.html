@@ -1,6 +1,7 @@
 {% extends 'base/base_dashboard.html' %}
 {% load static %}
 
+
 {% block css %}
 
 
@@ -39,7 +40,7 @@
                                     <form method="POST" action="{% url 'create_post' %}"
                                           enctype="multipart/form-data">
                                 {% else %}
-                                    <form method="POST" action="{{ url}}"
+                                    <form method="POST" action="{{ url }}"
                                           enctype="multipart/form-data">
                                 {% endif %}
                                 {% csrf_token %}
@@ -72,7 +73,7 @@
                                             <br/>
 
                                             {{ form.body }}
-                                            {{ form.media }}
+
                                         </div>
 
                                     </div>
@@ -145,5 +146,6 @@
     </main>
 
 {% endblock %}
+
 
 

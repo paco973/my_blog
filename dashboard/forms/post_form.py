@@ -1,3 +1,4 @@
+from ckeditor.widgets import CKEditorWidget
 from django import forms
 from app.models import Category, Tag
 from app.models.post import STATUS, Post

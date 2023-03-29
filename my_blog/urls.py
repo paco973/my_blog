@@ -23,7 +23,7 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('__debug__/', include(debug_toolbar.urls)),
-    path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('froala_editor/', include('froala_editor.urls')),
     
     path('', include('app.urls')),
     path('', include('user_profile.urls')),

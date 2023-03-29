@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.db import models
 from my_blog.middleware import get_current_user
 from django.urls import reverse
-from ckeditor_uploader.fields import RichTextUploadingField
+from froala_editor.fields import FroalaField
 from app.models.post_view import PostView
 from .post_like import PostLike
 from user_profile.models import User
@@ -42,7 +42,7 @@ class PostManager(models.Manager):
 
 class Post(models.Model):
     title = models.CharField(max_length=255)
-    body = RichTextUploadingField()
+    body = FroalaField()
     description = models.TextField()
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, default=None)
     tag = models.ManyToManyField('Tag')
