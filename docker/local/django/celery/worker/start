@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -o errexit
+
+set -o nounset
+
+watchmedo auto-restart -d my_blog/ -p "*.py" -- celery -A my_blog worker --loglevel=INFO
+# watchmedo auto-restart -d logistics/logistics/ -p "*.py" -- celery worker -A logistics.logistics --loglevel=info
+# watchmedo auto-restart -d my_blog/ -p "*.py" -- celery worker -A my_blog

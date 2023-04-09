@@ -1,0 +1,32 @@
+image: docker:latest
+
+services:
+  - docker:dind
+
+stages:
+  - build
+  - test
+  - deploy
+
+variables:
+  DOCKER_DRIVER: overlay2
+  DOCKER_COMPOSE_VERSION: 1.28.0
+
+before_script:
+  - docker-compose up -d
+
+build:
+  stage: build
+  script:
+    - docker build -t my-django-app .
+
+test:
+  stage: test
+  script:
+    - docker run my-django-app python manage.py test
+
+deploy:
+  stage: deploy
+  script:
+    - docker-compose down
+    - docker-compose up -d
