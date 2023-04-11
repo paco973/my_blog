@@ -14,26 +14,33 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = ['127.0.0.1', 'lawa-zone.fr', 'www.lawa-zone.fr', '165.232.40.239']
+ALLOWED_HOSTS = env("ALLOWED_HOSTS").split(" ")
 
-# Application
-INSTALLED_APPS = [
+DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # thirty partie
+]
+
+THIRD_PARTY_APPS = [
+    "djcelery_email",
     'debug_toolbar',
     'froala_editor',
     'storages',
+]
 
-    # internal
+LOCAL_APPS = [
     'user_profile',
     'app',
     'dashboard'
 ]
+
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
+
+SITE_ID = 1
 
 # Middleware definition
 
@@ -78,24 +85,17 @@ WSGI_APPLICATION = 'my_blog.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-if DEBUG:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
+
+DATABASES = {
+    'default': {
+        'ENGINE': env('POSTGRES_ENGINE'),
+        'NAME': env('POSTGRES_DB'),
+        'USER': env('POSTGRES_USER'),
+        'PASSWORD': env('POSTGRES_PASSWORD'),
+        'HOST': env('PG_HOST'),
+        'PORT': env('PG_PORT'),
     }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'blog',
-            'USER': 'paco',
-            'PASSWORD': 'Grand-Santi973',
-            'HOST': '127.0.0.1',
-            'PORT': '5432',
-        }
-    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -120,7 +120,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'fr'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Paris'
 
 USE_I18N = True
 
@@ -146,7 +146,7 @@ else:
 
 AUTH_USER_MODEL = 'user_profile.User'
 
-INTERNAL_IPS = ["127.0.0.1"]
+INTERNAL_IPS = ['127.0.0.1']
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -180,3 +180,33 @@ FROALA_EDITOR_PLUGINS = {
     'video': True,
     'word_paste': True,
 }
+
+# SendMail Cgnfig
+EMAIL_BACKEND = "djcelery_email.backends.CeleryEmailBackend"
+EMAIL_HOST = env("EMAIL_HOST")
+EMAIL_USE_TLS = True
+EMAIL_PORT = env("EMAIL_PORT")
+EMAIL_HOST_USER = env("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
+DEFAULT_FROM_EMAIL = env("EMAIL_HOST_USER")
+DOMAIN = env("DOMAIN")
+SITE_NAME = 'Lawa Zone'
+
+# gestion cache
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': env("REDIS_LOCATION"),
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        }
+    }
+}
+
+# celery config
+CELERY_BROKER_URL = env("CELERY_BROKER")
+CELERY_RESULT_BACKEND = env("CELERY_BACKEND")
+CELERY_TIMEZONE = 'Europe/Paris'
+CELERY_TASK_TRACK_STARTED = True
+
+CSRF_TRUSTED_ORIGINS = ['http://localhost', 'http://127.0.0.1:8080']

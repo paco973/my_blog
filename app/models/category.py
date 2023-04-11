@@ -1,3 +1,4 @@
+from autoslug import AutoSlugField
 from django.db import models
 from django.shortcuts import reverse
 from .post import Post
@@ -8,7 +9,7 @@ class Category(models.Model):
     name = models.CharField(max_length=255)
     image = models.ImageField(upload_to='category/', default='paco.pgn', null=True)
     color = models.CharField(max_length=50, default=None, null=True, blank=True)
-    slug = models.SlugField(blank=True, null=True, unique=True)
+    slug = AutoSlugField(unique=True, populate_from='name')
     created_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
 

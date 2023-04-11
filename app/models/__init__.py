@@ -6,3 +6,4 @@ from .reaction import Reaction
 from .post_view import PostView
 from .category import Category
 from .tag import Tag
+from .news_letter import NewsLetter

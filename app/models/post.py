@@ -1,3 +1,4 @@
+from autoslug import AutoSlugField
 from django.contrib.auth import get_user_model
 from django.db import models
 from my_blog.middleware import get_current_user
@@ -51,7 +52,7 @@ class Post(models.Model):
     image = models.ImageField(upload_to='post/')
     created_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
-    slug = models.SlugField(unique=True, blank=True, null=True)
+    slug = AutoSlugField(unique=True, populate_from='title')
     published_date = models.DateTimeField(null=True, blank=True)
 
     objects = PostManager()
@@ -88,4 +89,3 @@ class Post(models.Model):
             return 'danger'
 
 
-# en django comment rendre le textField de mon model avec des outils d'édition comme sur word
