@@ -16,4 +16,4 @@ class CategoryModelTest(TestCase):
     @pytest.mark.django_db
     def test_category_absolute_url(self):
         category = Category.objects.get(id=1)
-        # Your test code here
+        self.assertEquals(category.slug, 'test_category')
