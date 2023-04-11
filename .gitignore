@@ -157,6 +157,8 @@ migrations/
 media/
 .fleet/
 .idea/
+postgres_data/
+
 
 
 # PyCharm

@@ -20,18 +20,18 @@ before_script:
 build:
   stage: build
   script:
-    - docker-compose -f docker-compose.yml build
-    - docker-compose -f docker-compose.yml push
+    - docker-compose -f docker-compose-production.yml build
+    - docker-compose -f docker-compose-production.yml push
   artifacts:
     paths:
-      - docker-compose.yml
+      - docker-compose-prod.yml
   only:
     - main
 
 test:
   stage: test
   script:
-    - docker-compose -f docker-compose.yml run web_app python manage.py test
+    - docker-compose -f docker-compose-production.yml run web_app python manage.py test
   dependencies:
     - build
   only:
@@ -42,8 +42,8 @@ deploy:
   environment:
     name: production
   script:
-    - docker-compose -f docker-compose.yml pull
-    - docker-compose -f docker-compose.yml up -d
+    - docker-compose -f docker-compose-production.yml pull
+    - docker-compose -f docker-compose-production.yml up -d
   dependencies:
     - build
   only:
