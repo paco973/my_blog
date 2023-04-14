@@ -21,11 +21,11 @@ EMAIL_PORT=587
 EMAIL_HOST_USER=djopaco973@gmail.com
 EMAIL_HOST_PASSWORD=goeivdwaxcdxepps
 
-DOMAIN=127.0.0.1
+DOMAIN=10.114.0.2
 
 CELERY_BROKER=redis://redis:6379/0
 CELERY_BACKEND=redis://redis:6379/0
 
 REDIS_LOCATION=redis://redis:6379/0
 
-CSRF_TRUSTED_ORIGINS="http://localhost http://127.0.0.1:8080 http://46.101.241.53 http://lawa-zone.fr http://www.lawa-zone.fr"
+CSRF_TRUSTED_ORIGINS="http://localhost http://127.0.0.1:8080 http://10.114.0.2 https://10.114.0.2 http://lawa-zone.fr http://www.lawa-zone.fr"

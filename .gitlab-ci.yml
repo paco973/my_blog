@@ -38,7 +38,7 @@ test:
   dependencies:
     - build
   only:
-    - main
+    - test
 
 deploy:
   stage: deploy
