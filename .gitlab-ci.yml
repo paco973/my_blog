@@ -27,7 +27,7 @@ build:
     - docker-compose -f docker-compose-production.yml push
   artifacts:
     paths:
-      - docker-compose-prod.yml
+      - docker-compose-production.yml
   only:
     - main
 

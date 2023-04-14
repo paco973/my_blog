@@ -99,7 +99,7 @@ volumes:
 
 
 
-Ecrit moi un pipline gitlab pour permettre la mise en production automatique en utilisant ce docker compose comme base.
+Ecrit moi un pipline gitlab pour permettre la mise en production automatique en utilisant se docker-compose comme base sur un droplet ubuntu digitalocean.
 La mise en production ne se fera pas site tous les tests unitaires ne passe pas. 
 
 
