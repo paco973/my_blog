@@ -25,9 +25,8 @@ services:
         ports:
             - "5432:5432"
         volumes:
-            - ./postgres_production_data:/var/lib/postgresql/data/
-        env_file:
-            - .envs/.production
+            - ./postgres_production_volume:/var/lib/postgresql/data/
+
         environment:
             - POSTGRES_USER=${POSTGRES_USER}
             - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
@@ -93,7 +92,7 @@ networks:
         driver: bridge
 
 volumes:
-    postgres_production_data:
+    postgres_production_volume:
     static_production_volume:
     media_production_volume:
 
