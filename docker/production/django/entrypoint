@@ -20,7 +20,7 @@ try:
     )
 
 except psycopg2.Error as e:
-    print(e)
+    print("erreur " + e)
     sys.exit(-1)
 sys.exit(0)
 END

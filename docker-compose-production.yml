@@ -21,11 +21,13 @@ services:
             - production
 
     postgres-db:
-        image: postgres:latest
+        image:  postgres:13.0-alpine
         ports:
             - "5432:5432"
         volumes:
             - ./postgres_production_data:/var/lib/postgresql/data/
+        env_file:
+            - .envs/.production
         environment:
             - POSTGRES_USER=${POSTGRES_USER}
             - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
